@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Butler";
+  src: url("Butler.woff2") format("woff2"), url("Butler.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gotham Book";
+  src: url("gotham-book.woff2") format("woff2"),
+    url("gotham-book.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
