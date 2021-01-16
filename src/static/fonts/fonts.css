@@ -1,14 +1,16 @@
 @font-face {
   font-family: "Butler";
-  src: url("Butler.woff2") format("woff2"), url("Butler.woff") format("woff");
+  src: url("./Butler.woff2") format("woff2"),
+    url("./Butler.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Gotham Book";
-  src: url("gotham-book.woff2") format("woff2"),
-    url("gotham-book.woff") format("woff");
+  font-family: "Gotham";
+  src: url("./Gotham-Book.woff") format("woff"),
+    url("./Gotham-Book.woff2") format("woff2"),
+    url("./Gotham-Book.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
