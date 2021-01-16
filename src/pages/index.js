@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Portait of Adrian Pietrzak" />
+    <SEO title="Portret" />
 
     <main style={{ padding: "50px 0" }}>
       <section>
@@ -15,7 +15,7 @@ const IndexPage = () => (
           odpowiedzieć na pytanie: „
           <strong style={{ fontSize: 15, fontFamily: "Gotham" }}>
             kim jest{" "}
-            <h1
+            <h2
               style={{
                 display: "inline",
                 fontSize: "inherit",
@@ -23,10 +23,11 @@ const IndexPage = () => (
               }}
             >
               Adrian Pietrzak
-            </h1>
+            </h2>
             ?
           </strong>
-          ” – opiszę swoją drogę od dzieciństwa do tego, kim jestem dzisiaj.
+          ” – opiszę swoją drogę od dzieciństwa do mojego obecnego momentu
+          życia.
         </p>
       </section>
 
@@ -39,7 +40,11 @@ const IndexPage = () => (
           internetowych. W tamtym czasie to był dopiero początek rozwoju
           Internetu; Chodziło o język HTML i CSS. Swoją pierwszą stronę
           internetową uruchomiłem w wieku 10 lat –{" "}
-          <a target="_blank" href="https://komiksy.pl.tl">
+          <a
+            target="_blank"
+            rel="noreferrer noopener"
+            href="https://komiksy.pl.tl"
+          >
             https://komiksy.pl.tl
           </a>
           . Następne lata spędziłem w moim rodzinnym mieście, grając w gry
@@ -63,12 +68,12 @@ const IndexPage = () => (
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
           W 2011 roku, założyłem swój pierwszy kanał na YouTube, umieszczając na
           nim moje rozgrywki z gier. Zacząłem wtedy budować swoją społeczność.
-          Kilka lat później, zmieniłem produkowany kontent z gier online na
-          filmy z moją osobą w roli głównej. Zgromadzone doświadczenie pomogło
-          mi zacząć tworzyć filmy viralowe i mój kanał, w kilka miesięcy,
-          zasubskrybowało 250 tys. osób. Dzięki reklamom umieszczanych na
-          filmach, udało mi się wygenerować z tego przyzwoite dochody, które
-          wystarczyły mi na dalsze życie nastolatka.
+          Kilka lat później, zmieniłem produkowany kontent na filmy z moją osobą
+          w roli głównej. Zgromadzone doświadczenie pomogło mi tworzyć filmy
+          viralowe i mój kanał, w kilka miesięcy, zasubskrybowało 250 tys. osób.
+          Dzięki reklamom umieszczanych na filmach, udało mi się wygenerować z
+          tego przyzwoite dochody, które wystarczyły mi na dalsze życie
+          nastolatka.
           <br />
           <br />
           To było moje pierwsze doświadczenie w biznesie internetowym i od razu
@@ -91,16 +96,16 @@ const IndexPage = () => (
         </h4>
 
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
-          Wybrałem studia informatyczne w trybie niestacjonarnym i zacząłem
+          Wybrałem studia inżynierskie w trybie niestacjonarnym i zacząłem
           szukać pierwszej pracy. W wieku 20 lat zacząłem swoją karierę jako
           programista w niedużej firmie typu „Software House”. Udało mi się
           zdobyć sporo umiejętności z zakresu programowania i nabyć cenne
           doświadczenie w branży e-commerce.
           <br />
           <br />W między czasie, pracowałem nad moją aplikacją open source,
-          która zdobyła ponad 1 tys. gwiazdek w serwisie github.com. Mój kod
-          okazał się dużą pomocą dla wielu programistów na całym świecie. To
-          samo oprogramowanie stało się częścią mojej pracy dyplomowej, którą
+          która zdobyła ponad 1 tys. gwiazdek w serwisie GitHub. Mój kod okazał
+          się dużą pomocą dla wielu programistów na całym świecie. To samo
+          oprogramowanie stało się częścią mojej pracy dyplomowej, którą
           obroniłem na początku 2021 roku.
         </p>
 
@@ -117,18 +122,11 @@ const IndexPage = () => (
       </section>
 
       <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
+        ___
+        <br />
         Będzie kontynuowane,
         <br />
-        <h2
-          style={{
-            display: "inline",
-            fontWeight: "normal",
-            fontSize: "inherit",
-            fontFamily: "inherit",
-          }}
-        >
-          Adrian Pierzak
-        </h2>
+        Adrian Pierzak
       </p>
     </main>
   </Layout>
