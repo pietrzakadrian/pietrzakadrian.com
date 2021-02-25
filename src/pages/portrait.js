@@ -12,7 +12,7 @@ const PortraitPage = () => (
       <section>
         <p style={{ fontSize: 15, fontFamily: "Gotham" }}>
           Jednym z najczęściej zadawanych mi pytań, jest czym się zajmuję. Aby
-          odpowiedzieć na pytanie: „
+          móc odpowiedzieć na pytanie
           <strong style={{ fontSize: 15, fontFamily: "Gotham" }}>
             kim jest{" "}
             <h2
@@ -26,8 +26,8 @@ const PortraitPage = () => (
             </h2>
             ?
           </strong>
-          ” – opiszę swoją drogę od dzieciństwa do mojego obecnego momentu
-          życia.
+          – opiszę swoją drogę od dzieciństwa, do momentu, w którym jestem
+          dzisiaj. życia.
         </p>
       </section>
 
@@ -35,8 +35,8 @@ const PortraitPage = () => (
 
       <section>
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
-          Zawsze interesowały mnie technologie internetowe i zacząłem swoją
-          podróż w bardzo młodym wieku. Uczyłem się tworzenia stron
+          Zawsze interesowały mnie technologie internetowe i styczność z nimi
+          miałem już w bardzo młodym wieku. Uczyłem się tworzenia stron
           internetowych. W tamtym czasie to był dopiero początek rozwoju
           Internetu; Chodziło o język HTML i CSS. Swoją pierwszą stronę
           internetową uruchomiłem w wieku 10 lat –{" "}
@@ -47,8 +47,8 @@ const PortraitPage = () => (
           >
             https://komiksy.pl.tl
           </a>
-          . Następne lata spędziłem w moim rodzinnym mieście, grając w gry
-          internetowe MMO RPG i uczęszczając do szkół podstawowej i średniej.
+          . Następne lata spędziłem grając w gry MMO RPG i uczęszczając do szkół
+          podstawowej i średniej.
         </p>
       </section>
 
@@ -68,12 +68,12 @@ const PortraitPage = () => (
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
           W 2011 roku, założyłem swój pierwszy kanał na YouTube, umieszczając na
           nim moje rozgrywki z gier. Zacząłem wtedy budować swoją społeczność.
-          Kilka lat później, zmieniłem produkowany kontent na filmy z moją osobą
-          w roli głównej. Zgromadzone doświadczenie pomogło mi tworzyć filmy
-          viralowe i mój kanał, w kilka miesięcy, zasubskrybowało 250 tys. osób.
-          Dzięki reklamom umieszczanych na filmach, udało mi się wygenerować z
-          tego przyzwoite dochody, które wystarczyły mi na dalsze życie
-          nastolatka.
+          Kilka lat później, zmieniłem produkowany kontent z gier online na
+          filmy z moją osobą w roli głównej. Zgromadzone doświadczenie pomogło
+          mi tworzyć materiały viralowe i mój kanał, w kilka miesięcy,
+          zasubskrybowało 250 tys. osób. Dzięki reklamom umieszczanych na
+          filmach, udało mi się wygenerować z tego przyzwoite dochody, które
+          wystarczyły mi na dalsze, nastoletnie życie.
           <br />
           <br />
           To było moje pierwsze doświadczenie w biznesie internetowym i od razu
