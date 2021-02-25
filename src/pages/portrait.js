@@ -24,8 +24,8 @@ const PortraitPage = () => (
             </h2>
             ?
           </strong>{" "}
-          – opiszę swoją drogę od dzieciństwa, do momentu, w którym jestem
-          dzisiaj. życia.
+          – opiszę swoją drogę od dzieciństwa, do momentu życia, w którym jestem
+          dzisiaj.
         </p>
       </section>
 
