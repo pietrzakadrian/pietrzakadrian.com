@@ -63,7 +63,7 @@ const PortraitPage = () => (
         </h4>
 
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
-          W 2011 roku, założyłem swój pierwszy kanał na YouTube, umieszczając na
+          W 2011 roku, założyłem kanał na YouTube, umieszczając na
           nim moje rozgrywki z gier. Zacząłem wtedy budować swoją społeczność.
           Kilka lat później, zmieniłem produkowany kontent na
           filmy z moją osobą w roli głównej. Zgromadzone doświadczenie pomogło
