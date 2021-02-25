@@ -63,12 +63,13 @@ const PortraitPage = () => (
         </h4>
 
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
-          W 2011 roku, założyłem kanał na YouTube, umieszczając na
+          W 2011 roku założyłem kanał na YouTube, umieszczając na
           nim moje rozgrywki z gier. Zacząłem wtedy budować swoją społeczność.
           Kilka lat później, zmieniłem produkowany kontent na
           filmy z moją osobą w roli głównej. Zgromadzone doświadczenie pomogło
           mi tworzyć materiały viralowe i mój kanał, w kilka miesięcy,
-          zasubskrybowało 250 tys. osób. Dzięki reklamom umieszczanych na
+          zasubskrybowało 250 tys. osób.
+          <br/>Dzięki reklamom umieszczanych na
           filmach, udało mi się wygenerować z tego przyzwoite dochody, które
           wystarczyły mi na dalsze, nastoletnie życie.
           <br />
@@ -89,7 +90,7 @@ const PortraitPage = () => (
             lineHeight: 1.8,
           }}
         >
-          Programowanie
+          Programista
         </h4>
 
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
