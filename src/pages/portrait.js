@@ -36,8 +36,7 @@ const PortraitPage = () => (
           Zawsze interesowały mnie technologie internetowe i styczność z nimi
           miałem już w bardzo młodym wieku. Uczyłem się tworzenia stron
           internetowych. W tamtym czasie to był dopiero początek rozwoju
-          Internetu; Chodziło o język HTML i CSS. Swoją pierwszą stronę
-          internetową uruchomiłem w wieku 10 lat –{" "}
+          Internetu; Chodziło o język HTML i CSS. Swoją pierwszą stronę uruchomiłem w wieku 10 lat –{" "}
           <a
             target="_blank"
             rel="noreferrer noopener"
@@ -95,7 +94,7 @@ const PortraitPage = () => (
 
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
           Wybrałem studia inżynierskie w trybie niestacjonarnym i zacząłem
-          szukać pierwszej pracy. W wieku 20 lat zacząłem swoją karierę jako
+          szukać pierwszej pracy. W wieku 20 lat rozpocząłem karierę jako
           programista w niedużej firmie typu „Software House”. Udało mi się
           zdobyć sporo umiejętności z zakresu programowania i nabyć cenne
           doświadczenie w branży e-commerce.
