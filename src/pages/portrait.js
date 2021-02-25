@@ -10,7 +10,7 @@ const PortraitPage = () => (
       <section>
         <p style={{ fontSize: 15, fontFamily: "Gotham" }}>
           Jednym z najczęściej zadawanych mi pytań, jest czym się zajmuję. Aby
-          móc odpowiedzieć na pytanie{" "}
+          móc odpowiedzieć na pytanie: {" "}
           <strong style={{ fontSize: 15, fontFamily: "Gotham" }}>
             kim jest{" "}
             <h2
