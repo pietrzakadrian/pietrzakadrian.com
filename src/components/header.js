@@ -31,17 +31,6 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
-
-      <iframe
-        src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fpietrzakadrian&width=108&layout=button_count&action=like&size=large&share=false&height=21&appId"
-        width="140"
-        height="30"
-        style={{border:'none',overflow:'hidden', margin: 0}}
-        scrolling="no"
-        frameborder="0"
-        allowfullscreen="true"
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-      ></iframe>
     </div>
   </header>
 )
