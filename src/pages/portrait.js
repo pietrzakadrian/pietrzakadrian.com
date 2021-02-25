@@ -60,13 +60,13 @@ const PortraitPage = () => (
             lineHeight: 1.8,
           }}
         >
-          Dorastanie
+          Pierwszy raz
         </h4>
 
         <p style={{ fontFamily: "Gotham", fontSize: 15 }}>
           W 2011 roku, założyłem swój pierwszy kanał na YouTube, umieszczając na
           nim moje rozgrywki z gier. Zacząłem wtedy budować swoją społeczność.
-          Kilka lat później, zmieniłem produkowany kontent z gier online na
+          Kilka lat później, zmieniłem produkowany kontent na
           filmy z moją osobą w roli głównej. Zgromadzone doświadczenie pomogło
           mi tworzyć materiały viralowe i mój kanał, w kilka miesięcy,
           zasubskrybowało 250 tys. osób. Dzięki reklamom umieszczanych na
