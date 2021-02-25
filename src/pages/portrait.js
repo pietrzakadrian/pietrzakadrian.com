@@ -1,6 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -12,7 +10,7 @@ const PortraitPage = () => (
       <section>
         <p style={{ fontSize: 15, fontFamily: "Gotham" }}>
           Jednym z najczęściej zadawanych mi pytań, jest czym się zajmuję. Aby
-          móc odpowiedzieć na pytanie
+          móc odpowiedzieć na pytanie{" "}
           <strong style={{ fontSize: 15, fontFamily: "Gotham" }}>
             kim jest{" "}
             <h2
@@ -25,7 +23,7 @@ const PortraitPage = () => (
               Adrian Pietrzak
             </h2>
             ?
-          </strong>
+          </strong>{" "}
           – opiszę swoją drogę od dzieciństwa, do momentu, w którym jestem
           dzisiaj. życia.
         </p>
