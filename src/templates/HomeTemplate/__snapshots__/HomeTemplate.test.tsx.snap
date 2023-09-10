@@ -1,15 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageTemplate renders correctly 1`] = `
-<div>
-  <h1
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  >
-    Adrian Pietrzak
-  </h1>
-</div>
-`;
+exports[`HomeTemplate renders correctly 1`] = `null`;
