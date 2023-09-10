@@ -8,6 +8,7 @@ import { Page } from "@/components/Page";
 import { Sidebar } from "@/components/Sidebar";
 import { useCategoriesList, useSiteMetadata } from "@/hooks";
 import { toKebabCase } from "@/utils";
+import constants from "../../../internal/gatsby/constants/routes";
 
 const CategoriesTemplate: React.FC = () => {
   const categories = useCategoriesList();
@@ -19,7 +20,7 @@ const CategoriesTemplate: React.FC = () => {
         <ul>
           {categories.map((category) => (
             <li key={category.fieldValue}>
-              <Link to={`/category/${toKebabCase(category.fieldValue)}/`}>
+              <Link to={`${constants.categoryRoute}/${toKebabCase(category.fieldValue)}/`}>
                 {category.fieldValue} ({category.totalCount})
               </Link>
             </li>

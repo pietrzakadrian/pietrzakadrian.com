@@ -6,6 +6,7 @@ import { Image } from "@/components/Image";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 import * as styles from "./Author.module.scss";
+import constants from "../../../../internal/gatsby/constants/routes";
 
 type Props = {
   author: {
@@ -18,20 +19,20 @@ type Props = {
 
 const Author = ({ author, isIndex }: Props) => (
   <div className={styles.author}>
-    <Link to="/">
+    <Link to={constants.indexRoute}>
       <Image alt={author.name} path={author.photo} className={styles.photo} />
     </Link>
 
     <div className={styles.titleContainer}>
       {isIndex ? (
         <h1 className={styles.title}>
-          <Link className={styles.link} to="/">
+          <Link className={styles.link} to={constants.indexRoute}>
             {author.name}
           </Link>
         </h1>
       ) : (
         <h2 className={styles.title}>
-          <Link className={styles.link} to="/">
+          <Link className={styles.link} to={constants.indexRoute}>
             {author.name}
           </Link>
         </h2>
