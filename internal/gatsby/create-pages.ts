@@ -20,6 +20,12 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   createPage({
+    path: constants.routes.homeRoute,
+    component: constants.templates.homeTemplate,
+    context: {},
+  });
+
+  createPage({
     path: constants.routes.notFoundRoute,
     component: constants.templates.notFoundTemplate,
     context: {},
