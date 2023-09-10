@@ -1,37 +1,45 @@
 {
-  "title": "Blog by John Doe",
-  "url": "https://lumen.alxshelepenok.com",
-  "subtitle": "Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.",
+  "title": "Adrian Pietrzak",
+  "url": "https://pietrzakadrian.com",
+  "subtitle": "Adrian Pietrzak is a software engineer from Poland. He mostly works with Node.js, React and React Native.",
   "copyright": "© All rights reserved.",
-  "googleAnalyticsId": "UA-73379983-2",
+  "googleAnalyticsId": "UA-205649365-1",
   "disqusShortname": "",
   "postsLimit": 4,
   "pathPrefix": "/",
   "menu": [
     {
       "label": "Articles",
-      "path": "/"
+      "path": "/blog"
     },
     {
-      "label": "About me",
-      "path": "/pages/about"
+      "label": "Portrait",
+      "path": "/portrait"
     },
     {
-      "label": "Contact me",
-      "path": "/pages/contacts"
+      "label": "Newsletter",
+      "path": "/newsletter"
+    },
+    {
+      "label": "Collaboration ✨",
+      "path": "/collaboration"
+    },
+    {
+      "label": "Privacy policy",
+      "path": "/privacy-policy"
     }
   ],
   "author": {
-    "name": "John Doe",
+    "name": "Adrian Pietrzak",
     "photo": "/photo.jpg",
-    "bio": "Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.",
+    "bio": "Software Engineer from Poland. Mostly Node.js, React and React Native.",
     "contacts": {
       "rss": "",
-      "email": "",
-      "github": "#",
+      "email": "contact@pietrzakadrian.com",
+      "github": "pietrzakadrian",
       "facebook": "#",
       "telegram": "#",
-      "twitter": "#",
+      "twitter": "pietrzakadrian",
       "linkedin": "#",
       "instagram": "#",
       "mastodon": "#",
