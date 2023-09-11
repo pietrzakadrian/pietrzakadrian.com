@@ -45,16 +45,8 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
 
   const pages = await queries.pagesQuery(graphql);
 
-  pages.forEach((edge) => {
-    const { node } = edge;
-
-    if (node?.frontmatter?.template === "page" && node?.fields?.slug) {
-      createPage({
-        path: node?.frontmatter?.slug || node.fields.slug,
-        component: constants.templates.pageTemplate,
-        context: { slug: node.fields.slug },
-      });
-    } else if (node?.frontmatter?.template === "post" && node?.fields?.slug) {
+  pages.forEach(({ node }) => {
+    if (node?.frontmatter?.template === "post" && node?.fields?.slug) {
       createPage({
         path: node?.frontmatter?.slug || node.fields.slug,
         component: constants.templates.postTemplate,
