@@ -3,7 +3,7 @@ title: ⭐️ How did my open source project get over 1k stars on GitHub?
 date: "2021-11-23T12:40:32.169Z"
 template: "post"
 draft: false
-slug: "how-did-my-open-source-project-get-over-1k-stars-on-github"
+slug: "/blog/how-did-my-open-source-project-get-over-1k-stars-on-github"
 category: "Open Source"
 tags:
   - "NodeJS"

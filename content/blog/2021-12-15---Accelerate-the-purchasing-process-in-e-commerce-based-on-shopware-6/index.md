@@ -3,7 +3,7 @@ title: Accelerate the purchasing 🛍 process in e-commerce based on Shopware 6
 date: "2021-12-15T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "accelerate-the-purchasing-process-in-e-commerce-based-on-shopware-6"
+slug: "/blog/accelerate-the-purchasing-process-in-e-commerce-based-on-shopware-6"
 category: "E-commerce"
 tags:
   - "Shopware 6"

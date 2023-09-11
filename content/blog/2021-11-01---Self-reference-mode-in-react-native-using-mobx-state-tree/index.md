@@ -3,7 +3,7 @@ title: Self reference model in React Native using MobX-state-tree
 date: "2021-11-01T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "self-reference-mode-in-react-native-using-mobx-state-tree"
+slug: "/blog/self-reference-mode-in-react-native-using-mobx-state-tree"
 category: "Mobile Development"
 tags:
   - "TypeScript"

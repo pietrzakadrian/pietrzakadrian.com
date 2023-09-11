@@ -3,7 +3,7 @@ title: How to create pagination in Nest.js with TypeORM + Swagger
 date: "2021-09-03T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "how-to-create-pagination-in-nestjs-with-typeorm-swagger"
+slug: "/blog/how-to-create-pagination-in-nestjs-with-typeorm-swagger"
 category: "Software Engineering"
 tags:
   - "TypeScript"
