@@ -3,12 +3,12 @@
 exports[`Author renders correctly 1`] = `
 <div>
   <a
-    href="/"
+    href="/blog"
   />
   <div>
     <h2>
       <a
-        href="/"
+        href="/blog"
       >
         John Doe
       </a>
