@@ -3,7 +3,7 @@ title: 🚨 How to hack your Node.js application (which uses TypeORM)?
 date: "2021-08-29T20:40:32.169Z"
 template: "post"
 draft: false
-slug: "how-to-hack-your-nodejs-application-which-uses-typeorm"
+slug: "/blog/how-to-hack-your-nodejs-application-which-uses-typeorm"
 category: "IT security"
 tags:
   - "TypeScript"

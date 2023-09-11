@@ -3,7 +3,7 @@ title: How to create a microservice that handles 🎢 the queue of sending email
 date: "2021-12-01T12:40:32.169Z"
 template: "post"
 draft: false
-slug: "how-to-create-a-microservice-that-handles-the-queue-of-sending-emails-in-nestjs"
+slug: "/blog/how-to-create-a-microservice-that-handles-the-queue-of-sending-emails-in-nestjs"
 category: "Software Engineering"
 tags:
   - "NodeJS"

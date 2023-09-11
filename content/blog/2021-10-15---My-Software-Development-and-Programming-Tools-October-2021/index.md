@@ -3,7 +3,7 @@ title: My Software Development Setup & Programming Tools (October 2021)
 date: "2021-10-15T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "my-software-development-setup-and-programming-tools-october-2021"
+slug: "/blog/my-software-development-setup-and-programming-tools-october-2021"
 category: "Software Development"
 tags:
   - "Computer Setup"

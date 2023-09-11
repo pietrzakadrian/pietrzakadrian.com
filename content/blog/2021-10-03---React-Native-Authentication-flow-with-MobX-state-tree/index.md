@@ -3,7 +3,7 @@ title: React Native Authentication flow with MobX-state-tree
 date: "2021-10-03T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "react-native-authentication-flow-with-mobx-state-tree"
+slug: "/blog/react-native-authentication-flow-with-mobx-state-tree"
 category: "Mobile Development"
 tags:
   - "TypeScript"

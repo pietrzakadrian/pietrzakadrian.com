@@ -3,7 +3,7 @@ title: "NestJS Authentication Series 🔐: Part 1 - User registration"
 date: "2022-02-13T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "nestjs-authentication-series/user-registration"
+slug: "/blog/nestjs-authentication-series/user-registration"
 category: "Software Engineering"
 tags:
   - "TypeScript"

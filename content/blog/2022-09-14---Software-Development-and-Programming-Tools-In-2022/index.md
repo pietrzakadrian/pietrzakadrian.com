@@ -3,7 +3,7 @@ title: "Software Development & Programming Tools in 2022"
 date: "2022-09-14T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "software-development-and-programming-tools-in-2022"
+slug: "/blog/software-development-and-programming-tools-in-2022"
 category: "Software Development"
 tags:
   - "Computer Setup"

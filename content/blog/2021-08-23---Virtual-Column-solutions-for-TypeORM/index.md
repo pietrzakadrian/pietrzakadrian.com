@@ -3,7 +3,7 @@ title: Virtual Column solutions for TypeORM
 date: "2021-08-23T22:40:32.169Z"
 template: "post"
 draft: false
-slug: "virtual-column-solutions-for-typeorm"
+slug: "/blog/virtual-column-solutions-for-typeorm"
 category: "Software Engineering"
 tags:
   - "TypeScript"
