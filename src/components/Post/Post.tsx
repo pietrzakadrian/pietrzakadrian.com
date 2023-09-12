@@ -23,11 +23,6 @@ const Post: React.FC<Props> = ({ post }: Props) => {
 
   return (
     <div className={styles.post}>
-      <div className={styles.buttons}>
-        <Button className={styles.buttonArticles} title="All Articles" to="/" />
-        <ThemeSwitcher />
-      </div>
-
       <div className={styles.content}>
         <Content body={html} title={title} />
       </div>
