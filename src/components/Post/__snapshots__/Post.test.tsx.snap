@@ -3,14 +3,6 @@
 exports[`Post renders correctly 1`] = `
 <div>
   <div>
-    <a
-      className=""
-      href="/"
-    >
-      All Articles
-    </a>
-  </div>
-  <div>
     <div>
       <h1>
         Perfecting the Art of Perfection
