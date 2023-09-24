@@ -37,7 +37,6 @@ const Author = ({ author, isIndex }: Props) => (
           </Link>
         </h2>
       )}
-      <ThemeSwitcher />
     </div>
     <p className={styles.subtitle}>{author.bio}</p>
   </div>
