@@ -138,9 +138,6 @@ exports[`PostTemplate renders correctly 1`] = `
           </li>
         </ul>
       </div>
-      <div>
-        All rights reserved.
-      </div>
     </div>
   </div>
   <div>
@@ -163,28 +160,10 @@ exports[`PostTemplate renders correctly 1`] = `
           </div>
           <div>
             <div>
-              <p>
-                Published
-                 
-                Sep 1, 2016
-              </p>
-            </div>
-            <div>
-              <p>
-                Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.
-                <a
-                  href="https://www.twitter.com/#"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <strong>
-                    John Doe
-                  </strong>
-                   on Twitter
-                </a>
-              </p>
+              All rights reserved.
             </div>
           </div>
+          <div />
           <div />
         </div>
       </div>

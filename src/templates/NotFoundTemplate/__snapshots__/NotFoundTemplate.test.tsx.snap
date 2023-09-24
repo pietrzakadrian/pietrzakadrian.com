@@ -138,9 +138,6 @@ exports[`NotFoundTemplate renders correctly 1`] = `
           </li>
         </ul>
       </div>
-      <div>
-        All rights reserved.
-      </div>
     </div>
   </div>
   <div>
