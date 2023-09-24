@@ -12,9 +12,9 @@
     margin-left: auto;
     margin-right: auto;
     max-width: $layout-post-width;
-    text-align: center;
+    text-align: left;
     @include line-height(1.65);
-    @include margin-top(1);
+    @include margin-top(0);
     @include margin-bottom(0);
   }
 
@@ -24,7 +24,6 @@
 
       blockquote {
         font-style: italic;
-        text-align: center;
         @include margin-top(0);
         @include padding(1, 0);
 
@@ -69,8 +68,8 @@
     .title {
       font-size: $typographic-base-font-size * 3;
       @include line-height(2.25);
-      @include margin-top(2.25);
-      @include margin-bottom(1.5);
+      @include margin-top(0);
+      @include margin-bottom(0);
     }
 
     .body {

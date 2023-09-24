@@ -18,6 +18,24 @@
           @include padding-left(0);
         }
       }
+
+      .button {
+        background-color: $color-silver;
+        border: none;
+        border-radius: 20px;
+        color: $color-dark-paper;
+        display: inline-block;
+        font-size: 12px;
+        height: auto;
+        line-height: inherit;
+        text-decoration: none;
+        transition: background .1s ease;
+        @include padding(0, 0.5);
+
+        &:hover {
+          background-color: $color-silver-light;
+        }
+      }
     }
   }
 }

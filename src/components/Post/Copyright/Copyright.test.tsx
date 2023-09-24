@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Copyright } from "@/components/Sidebar/Copyright";
+import { Copyright } from "@/components/Post/Copyright/index";
 import * as mocks from "@/mocks";
 import { testUtils } from "@/utils";
 

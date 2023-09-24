@@ -5,6 +5,7 @@ import { Link } from "gatsby";
 import { Edge } from "@/types";
 
 import * as styles from "./Feed.module.scss";
+import Tags from "@/components/Post/Tags/Tags";
 
 type Props = {
   edges: Array<Edge>;
@@ -25,6 +26,7 @@ const Feed: React.FC<Props> = ({ edges }: Props) => (
             {new Date(edge.node.frontmatter.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
+              day: "numeric"
             })}
           </time>
           <span className={styles.divider} />
@@ -45,12 +47,12 @@ const Feed: React.FC<Props> = ({ edges }: Props) => (
         <p className={styles.description}>
           {edge.node.frontmatter.description}
         </p>
-        <Link
-          className={styles.more}
-          to={edge.node.frontmatter?.slug || edge.node.fields.slug}
-        >
-          Read
-        </Link>
+
+        {edge.node.frontmatter.tags && edge.node.fields.tagSlugs && (
+          <div className={styles.tags}>
+            <Tags tags={edge.node.frontmatter.tags} tagSlugs={edge.node.fields.tagSlugs} />
+          </div>
+        )}
       </div>
     ))}
   </div>
