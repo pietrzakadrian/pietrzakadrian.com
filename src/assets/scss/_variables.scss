@@ -15,8 +15,9 @@ $typographic-base-font-size: 16px;
 $typographic-small-font-size: 14px;
 $typographic-base-line-height: 1.625;
 $typographic-leading: math.round(16 * math.div($typographic-root-font-size, 100) * $typographic-base-line-height);
-$typographic-font-family: "Gotham-Book", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
-$header-font-family: "Butler", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+$base-fonts: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+$typographic-font-family: "Gotham-Book", #{$base-fonts};
+$header-font-family: "Butler", #{$base-fonts};
 
 $button-height: 40px;
 $button-border-radius: 20px;
