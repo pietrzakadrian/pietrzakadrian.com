@@ -23,11 +23,12 @@ const Post: React.FC<Props> = ({ post }: Props) => {
 
   return (
     <div className={styles.post}>
+
       <div className={styles.content}>
         <Content body={html} title={title} />
       </div>
 
-      <div className={styles.copyright}>
+      <div>
         <Copyright copyright={copyright} />
       </div>
 

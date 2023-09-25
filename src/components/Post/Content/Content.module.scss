@@ -4,7 +4,7 @@
 .content {
   @include margin-auto();
   max-width: $layout-post-single-width;
-  @include padding(0, 0.5);
+  @include padding(0, 0);
 
   .title {
     font-size: $typographic-base-font-size * 2;
@@ -16,6 +16,15 @@
     @include line-height(1.65);
     @include margin-top(0);
     @include margin-bottom(0);
+  }
+
+  h1 {
+    font-size: $typographic-base-font-size * 1.8;
+    margin-top: 26px;
+  }
+
+  h2 {
+    font-size: $typographic-base-font-size * 1.5;
   }
 
   .body {

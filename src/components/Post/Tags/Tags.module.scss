@@ -7,10 +7,15 @@
   .list {
     list-style: none;
     @include padding-equal(0);
+    @include margin-top(0);
 
     .item {
       display: inline-block;
       @include margin(0.25, 0);
+
+      &:first-child {
+        @include padding-equal(0);
+      }
 
       @include breakpoint-sm {
         &:first-child {
@@ -20,7 +25,7 @@
       }
 
       .button {
-        background-color: $color-silver;
+        background-color: var(--color-tag-silver);
         border: none;
         border-radius: 20px;
         color: $color-dark-paper;
@@ -33,7 +38,7 @@
         @include padding(0, 0.5);
 
         &:hover {
-          background-color: $color-silver-light;
+          background-color: var(--color-tag-silver-hover);
         }
       }
     }

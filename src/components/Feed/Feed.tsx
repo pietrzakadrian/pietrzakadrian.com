@@ -49,7 +49,7 @@ const Feed: React.FC<Props> = ({ edges }: Props) => (
         </p>
 
         {edge.node.frontmatter.tags && edge.node.fields.tagSlugs && (
-          <div className={styles.tags}>
+          <div>
             <Tags tags={edge.node.frontmatter.tags} tagSlugs={edge.node.fields.tagSlugs} />
           </div>
         )}

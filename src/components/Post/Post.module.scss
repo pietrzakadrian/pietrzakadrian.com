@@ -8,8 +8,8 @@
 
   .footer {
     max-width: $layout-post-width;
-    @include padding(0, 0.5);
-    @include margin-auto();
+    @include padding(0, 0);
+    @include margin(0, 0);
   }
 
   .comments {
