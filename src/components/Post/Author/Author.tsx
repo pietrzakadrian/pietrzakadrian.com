@@ -4,23 +4,30 @@ import { useSiteMetadata } from "@/hooks";
 import { getContactHref } from "@/utils";
 
 import * as styles from "./Author.module.scss";
+import {ThemeSwitcher} from "@/components/ThemeSwitcher";
+import {Link} from "gatsby";
+import {Image} from "@/components/Image";
+import {Meta} from "@/components/Post/Meta";
 
-const Author = () => {
+interface Props {
+  date: string;
+  timeToRead: number;
+}
+const Author = ({ date, timeToRead }: Props) => {
   const { author } = useSiteMetadata();
 
   return (
     <div className={styles.author}>
-      <p className={styles.bio}>
-        {author.bio}
-        <a
-          className={styles.twitter}
-          href={getContactHref("twitter", author.contacts.twitter)}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <strong>{author.name}</strong> on Twitter
-        </a>
-      </p>
+      <div className={styles.information}>
+        <Image alt={author.name} path={author.photo} className={styles.photo}/>
+
+        <div>
+          <strong>{author.name}</strong>
+          <Meta date={date} timeToRead={timeToRead} />
+        </div>
+      </div>
+
+      <ThemeSwitcher />
     </div>
   );
 };

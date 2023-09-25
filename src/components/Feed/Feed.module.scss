@@ -37,6 +37,24 @@
       @include margin-bottom(0.75);
     }
 
+    .bottom {
+      align-items: center;
+      display: flex;
+
+      small {
+        align-items: center;
+        display: flex;
+        height: 26px;
+        white-space: nowrap;
+      }
+
+      .tags {
+        div, ul, li {
+          margin: 0;
+        }
+      }
+    }
+
     .meta {
       .time {
         color: var(--color-typographic-base-font);
