@@ -19,7 +19,12 @@ describe("Author", () => {
   });
 
   test("renders correctly", () => {
-    const tree = testUtils.createSnapshotsRenderer(<Author />).toJSON();
+    const props = {
+      date: mocks.markdownRemark.frontmatter.date,
+      timeToRead: mocks.markdownRemark.frontmatter.timeToRead
+    };
+
+    const tree = testUtils.createSnapshotsRenderer(<Author {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
