@@ -82,7 +82,8 @@ export const query = graphql`
 `;
 
 export const Head: React.FC<Props> = ({ pageContext }) => {
-  const { title, subtitle } = useSiteMetadata();
+  let { title, subtitle } = useSiteMetadata();
+  title = `${title}: Software Engineering Blog`;
 
   const {
     group,
@@ -90,7 +91,7 @@ export const Head: React.FC<Props> = ({ pageContext }) => {
   } = pageContext;
 
   const pageTitle =
-    page > 0 ? `${group} - Page ${page} - ${title}` : `${group} - ${title}`;
+    page > 0 ? `${group} - Page ${page} — ${title}` : `${group} — ${title}`;
 
   return <Meta title={pageTitle} description={subtitle} />;
 };

@@ -62,7 +62,7 @@ export const Head: React.FC<Props> = ({ data }) => {
 
   return (
     <Meta
-      title={`${pageTitle} - ${title}`}
+      title={`${pageTitle} — ${title}`}
       description={description}
       image={image}
     />

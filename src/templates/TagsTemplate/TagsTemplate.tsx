@@ -32,8 +32,9 @@ const TagsTemplate: React.FC = () => {
 };
 
 export const Head: React.FC = () => {
-  const { title, subtitle } = useSiteMetadata();
-  const pageTitle = `Tags - ${title}`;
+  let { title, subtitle } = useSiteMetadata();
+  title = `${title}: Software Engineering Blog`;
+  const pageTitle = `Tags — ${title}`;
 
   return <Meta title={pageTitle} description={subtitle} />;
 };

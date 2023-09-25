@@ -17,7 +17,7 @@ const NotFoundTemplate: React.FC = () => (
 
 export const Head: React.FC = () => {
   const { title, subtitle } = useSiteMetadata();
-  const pageTitle = `Not Found - ${title}`;
+  const pageTitle = `Not Found — ${title}`;
 
   return <Meta title={pageTitle} description={subtitle} />;
 };
