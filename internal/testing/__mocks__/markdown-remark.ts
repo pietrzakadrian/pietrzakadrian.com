@@ -1,5 +1,6 @@
 export default {
   id: "08870ea6-bdc8-4ec6-bf72-1e7d4488eb72",
+  timeToRead: 5,
   fields: {
     slug: "/posts/perfecting-the-art-of-perfection",
     tagsSlugs: ["/handwriting", "/helvetica"],

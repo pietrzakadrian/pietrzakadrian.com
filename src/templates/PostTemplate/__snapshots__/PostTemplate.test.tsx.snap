@@ -163,6 +163,7 @@ exports[`PostTemplate renders correctly 1`] = `
                         —
                       </span>
                       <p>
+                        5
                          min read
                       </p>
                     </div>
