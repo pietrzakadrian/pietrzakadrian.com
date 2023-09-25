@@ -49,7 +49,8 @@ export const query = graphql`
 `;
 
 export const Head: React.FC<Props> = ({ data }) => {
-  const { title, subtitle, url } = useSiteMetadata();
+  let { title, subtitle, url } = useSiteMetadata();
+  title = `${title}: Software Engineering Blog`;
 
   const {
     frontmatter: {
@@ -64,7 +65,7 @@ export const Head: React.FC<Props> = ({ data }) => {
 
   return (
     <Meta
-      title={`${postTitle} - ${title}`}
+      title={`${postTitle} — ${title}`}
       description={description}
       image={image}
     />

@@ -70,11 +70,12 @@ export const query = graphql`
 `;
 
 export const Head: React.FC<Props> = ({ pageContext }) => {
-  const { title, subtitle } = useSiteMetadata();
+  let { title, subtitle } = useSiteMetadata();
+  title = `${title}: Software Engineering Blog`;
   const {
     pagination: { currentPage: page },
   } = pageContext;
-  const pageTitle = page > 0 ? `Posts - Page ${page} - ${title}` : title;
+  const pageTitle = page > 0 ? `Posts - Page ${page} — ${title}` : title;
 
   return <Meta title={pageTitle} description={subtitle} />;
 };

@@ -32,8 +32,9 @@ const CategoriesTemplate: React.FC = () => {
 };
 
 export const Head: React.FC = () => {
-  const { title, subtitle } = useSiteMetadata();
-  const pageTitle = `Categories - ${title}`;
+  let { title, subtitle } = useSiteMetadata();
+  title = `${title}: Software Engineering Blog`;
+  const pageTitle = `Categories — ${title}`;
 
   return <Meta title={pageTitle} description={subtitle} />;
 };
