@@ -34,6 +34,7 @@
         color: var(--color-typographic-base-font);
         cursor: pointer;
         display: flex;
+        transition: color .2s ease;
 
         &:hover,
         &:focus {

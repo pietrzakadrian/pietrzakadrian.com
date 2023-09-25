@@ -1,6 +1,7 @@
 @import "../../assets/scss/mixins";
 
 .sidebar {
+  position: sticky;
   width: 100%;
 
   .inner {
@@ -22,6 +23,7 @@
 @include breakpoint-sm {
   .sidebar {
     lost-column: 5/12;
+    top: 0;
 
     .inner {
       @include padding(1.25, 0.75, 0);

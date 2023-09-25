@@ -8,26 +8,14 @@
 
   .footer {
     max-width: $layout-post-width;
-    @include padding(0, 0.5);
-    @include margin-auto();
+    @include padding(0, 0);
+    @include margin(0, 0);
   }
 
   .comments {
     max-width: $layout-post-width;
     @include padding(0, 0.5);
     @include margin-auto();
-  }
-
-  .buttons {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    @include margin(1, 0, 0, 0);
-
-    .buttonArticles {
-      @include margin(0, 0.5, 0, 0);
-    }
   }
 }
 
@@ -39,14 +27,6 @@
 
     .comments {
       @include padding-equal(0);
-    }
-
-    .buttons {
-      left: 30px;
-      max-width: none;
-      position: fixed;
-      top: 30px;
-      @include margin(0, 0.5, 0, 0);
     }
   }
 }

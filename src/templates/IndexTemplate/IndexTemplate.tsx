@@ -21,7 +21,6 @@ interface Props {
 const IndexTemplate: React.FC<Props> = ({ data, pageContext }: Props) => {
   const { pagination } = pageContext;
   const { hasNextPage, hasPrevPage, prevPagePath, nextPagePath } = pagination;
-
   const { edges } = data.allMarkdownRemark;
 
   return (
@@ -53,12 +52,14 @@ export const query = graphql`
           fields {
             categorySlug
             slug
+            tagSlugs
           }
           frontmatter {
             description
             category
             title
             date
+            tags
             slug
           }
         }

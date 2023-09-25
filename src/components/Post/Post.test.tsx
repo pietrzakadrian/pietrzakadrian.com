@@ -26,10 +26,4 @@ describe("Post", () => {
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
-
-  test("buttons is rendered correctly and exists", () => {
-    const props = { post: mocks.markdownRemark };
-    renderWithCoilProvider(<Post {...props} />);
-    expect(screen.getByText("All Articles")).toBeInTheDocument();
-  });
 });
