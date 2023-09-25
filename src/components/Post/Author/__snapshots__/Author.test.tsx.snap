@@ -9,12 +9,13 @@ exports[`Author renders correctly 1`] = `
       </strong>
       <div>
         <p>
-          Invalid Date
+          Sep 1, 2016
         </p>
         <span>
           —
         </span>
         <p>
+          5
            min read
         </p>
       </div>
