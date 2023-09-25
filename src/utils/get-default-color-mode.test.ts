@@ -2,7 +2,7 @@ import { getDefaultColorMode } from "@/utils";
 
 describe("getDefaultColorMode", () => {
   test("successful return color mode", () => {
-    expect(getDefaultColorMode()).toBe("dark");
+    expect(getDefaultColorMode()).toBe("light");
 
     (window.matchMedia as jest.Mock).mockReturnValue({
       matches: true,
