@@ -2,23 +2,31 @@
 @import "../../../assets/scss/mixins";
 
 .author {
-  border-top: 1px solid var(--color-page-border);
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   max-width: $layout-post-width;
-  @include padding-top(1);
   @include line-height(1);
-  @include margin-top(1);
-  @include margin-bottom(2);
+  @include margin-top(0.5);
+  @include margin-bottom(1.5);
 
-  .bio {
-    .twitter {
-      display: block;
-      text-decoration: underline;
+  .photo {
+    background-clip: padding-box;
+    border-radius: 50%;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    @include margin-bottom(0);
+    @include margin-right(0.25);
 
-      &:hover,
-      &:focus {
-        color: var(--color-typographic-link-s-font);
-      }
+    img {
+      border-radius: 50%;
     }
+  }
+
+  .information {
+    align-items: center;
+    display: flex;
   }
 }
 

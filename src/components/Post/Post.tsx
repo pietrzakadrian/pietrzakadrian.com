@@ -16,16 +16,15 @@ interface Props {
 }
 
 const Post: React.FC<Props> = ({ post }: Props) => {
-  const { html } = post;
+  const { html, timeToRead } = post;
   const { tagSlugs, slug } = post.fields;
-  const { tags, title } = post.frontmatter;
+  const { tags, title, date } = post.frontmatter;
   const { copyright } = useSiteMetadata();
 
   return (
     <div className={styles.post}>
-
       <div className={styles.content}>
-        <Content body={html} title={title} />
+        <Content body={html} title={title} date={date} timeToRead={timeToRead} />
       </div>
 
       <div>

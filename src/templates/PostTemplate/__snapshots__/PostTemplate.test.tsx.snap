@@ -149,6 +149,26 @@ exports[`PostTemplate renders correctly 1`] = `
               <h1>
                 Perfecting the Art of Perfection
               </h1>
+              <div>
+                <div>
+                  <div>
+                    <strong>
+                      John Doe
+                    </strong>
+                    <div>
+                      <p>
+                        Sep 1, 2016
+                      </p>
+                      <span>
+                        —
+                      </span>
+                      <p>
+                         min read
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div
                 dangerouslySetInnerHTML={
                   {

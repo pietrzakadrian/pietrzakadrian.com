@@ -56,9 +56,11 @@ export const query = graphql`
     ) {
       edges {
         node {
+          timeToRead
           fields {
             slug
             categorySlug
+            tagSlugs
           }
           frontmatter {
             description
@@ -66,6 +68,7 @@ export const query = graphql`
             title
             date
             slug
+            tags
           }
         }
       }

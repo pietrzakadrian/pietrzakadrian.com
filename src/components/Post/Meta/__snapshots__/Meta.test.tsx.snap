@@ -3,9 +3,13 @@
 exports[`Meta renders correctly 1`] = `
 <div>
   <p>
-    Published
-     
     Sep 1, 2016
+  </p>
+  <span>
+    —
+  </span>
+  <p>
+     min read
   </p>
 </div>
 `;
