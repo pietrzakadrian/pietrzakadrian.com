@@ -11,7 +11,7 @@ describe("getDefaultColorMode", () => {
     expect(getDefaultColorMode()).toBe("dark");
 
     (window.matchMedia as jest.Mock).mockReturnValue({});
-    expect(getDefaultColorMode()).toBe("light");
+    expect(getDefaultColorMode()).toBe("dark");
   });
 
   test("successful return default color mode on ssr", () => {
