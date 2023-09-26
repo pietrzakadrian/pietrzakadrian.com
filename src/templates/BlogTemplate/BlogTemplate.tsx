@@ -18,7 +18,7 @@ interface Props {
   pageContext: PageContext;
 }
 
-const IndexTemplate: React.FC<Props> = ({ data, pageContext }: Props) => {
+const BlogTemplate: React.FC<Props> = ({ data, pageContext }: Props) => {
   const { pagination } = pageContext;
   const { hasNextPage, hasPrevPage, prevPagePath, nextPagePath } = pagination;
   const { edges } = data.allMarkdownRemark;
@@ -40,7 +40,7 @@ const IndexTemplate: React.FC<Props> = ({ data, pageContext }: Props) => {
 };
 
 export const query = graphql`
-  query IndexTemplate($limit: Int!, $offset: Int!) {
+  query BlogTemplate($limit: Int!, $offset: Int!) {
     allMarkdownRemark(
       limit: $limit
       skip: $offset
@@ -80,4 +80,4 @@ export const Head: React.FC<Props> = ({ pageContext }) => {
   return <Meta title={pageTitle} description={subtitle} />;
 };
 
-export default IndexTemplate;
+export default BlogTemplate;
