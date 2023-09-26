@@ -1,8 +1,8 @@
 import path from "path";
 
 const templates = Object.freeze({
-  indexTemplate: path.resolve(
-    "./src/templates/IndexTemplate/IndexTemplate.tsx",
+  blogTemplate: path.resolve(
+    "./src/templates/BlogTemplate/BlogTemplate.tsx",
   ),
   homeTemplate: path.resolve(
     "./src/templates/HomeTemplate/HomeTemplate.tsx",

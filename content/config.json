@@ -17,6 +17,10 @@
       "path": "/portrait"
     },
     {
+      "label": "Tools",
+      "path": "/tools"
+    },
+    {
       "label": "Newsletter",
       "path": "/newsletter"
     },
@@ -24,6 +28,7 @@
       "label": "Collaboration ✨",
       "path": "/collaboration"
     },
+
     {
       "label": "Privacy policy",
       "path": "/privacy-policy"

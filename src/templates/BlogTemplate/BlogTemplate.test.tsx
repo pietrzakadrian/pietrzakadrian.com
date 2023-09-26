@@ -6,12 +6,12 @@ import { StaticQuery, useStaticQuery } from "gatsby";
 import * as mocks from "@/mocks";
 import { testUtils } from "@/utils";
 
-import IndexTemplate, { Head as GatsbyHead } from "./IndexTemplate";
+import IndexTemplate, { Head as GatsbyHead } from "./BlogTemplate";
 
 const mockedStaticQuery = StaticQuery as jest.Mock;
 const mockedUseStaticQuery = useStaticQuery as jest.Mock;
 
-describe("IndexTemplate", () => {
+describe("BlogTemplate", () => {
   const props = {
     data: {
       allMarkdownRemark: mocks.allMarkdownRemark,

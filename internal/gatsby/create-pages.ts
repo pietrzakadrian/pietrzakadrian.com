@@ -46,12 +46,28 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
   const pages = await queries.pagesQuery(graphql);
 
   pages.forEach(({ node }) => {
-    if (node?.frontmatter?.template === "post" && node?.fields?.slug) {
-      createPage({
-        path: node?.frontmatter?.slug || node.fields.slug,
-        component: constants.templates.postTemplate,
-        context: { slug: node.fields.slug },
-      });
+    if (node?.fields?.slug) {
+      switch (node?.frontmatter?.template) {
+        case "page": {
+          createPage({
+            path: node?.frontmatter?.slug || node.fields.slug,
+            component: constants.templates.pageTemplate,
+            context: {slug: node.fields.slug},
+          });
+
+          break;
+        }
+
+        case "post": {
+          createPage({
+            path: node?.frontmatter?.slug || node.fields.slug,
+            component: constants.templates.postTemplate,
+            context: { slug: node.fields.slug },
+          });
+
+          break;
+        }
+      }
     }
   });
 
@@ -130,7 +146,7 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
   });
 
   const path = constants.routes.indexRoute;
-  const template = constants.templates.indexTemplate;
+  const template = constants.templates.blogTemplate;
   const posts = await queries.postsQuery(graphql);
   const total = Math.ceil((posts?.edges?.length ?? 0) / postsLimit);
 
