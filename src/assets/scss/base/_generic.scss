@@ -126,9 +126,11 @@ p {
 }
 
 blockquote {
+  box-shadow: inset 3px 0 0 0 var(--color-typographic-base-font);
   font-style: italic;
-  padding: 0;
   text-align: left;
+  @include padding-left(1);
+  @include margin-left(0);
 }
 
 figure {

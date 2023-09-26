@@ -22,6 +22,6 @@ Last updated: 26.10.2023, 11:33 AM
 7. iTerm2 — terminal replacement
 8. Docker Desktop — containerization
 
-
+___
 
 > “The more you know, the less you need.” — Yvon Chouinard
