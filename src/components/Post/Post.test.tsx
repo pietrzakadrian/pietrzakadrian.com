@@ -20,7 +20,7 @@ describe("Post", () => {
   });
 
   test("renders correctly", () => {
-    const props = { post: mocks.markdownRemark };
+    const props = { post: mocks.markdownRemark, related: mocks.allMarkdownRemark.edges };
     const tree = testUtils
       .createSnapshotsRenderer(<Post {...props} />)
       .toJSON();
