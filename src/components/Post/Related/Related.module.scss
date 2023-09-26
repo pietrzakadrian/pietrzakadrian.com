@@ -1,0 +1,7 @@
+@import "../../../assets/scss/mixins";
+
+.related {
+  .header {
+    @include margin-top(0);
+  }
+}
