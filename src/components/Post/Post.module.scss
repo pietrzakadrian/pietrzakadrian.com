@@ -14,7 +14,7 @@
 
   .comments {
     max-width: $layout-post-width;
-    @include padding(0, 0.5);
+    padding: 0!important;
     @include margin-auto();
   }
 }
@@ -22,10 +22,6 @@
 @include breakpoint-md {
   .post {
     .footer {
-      @include padding-equal(0);
-    }
-
-    .comments {
       @include padding-equal(0);
     }
   }
