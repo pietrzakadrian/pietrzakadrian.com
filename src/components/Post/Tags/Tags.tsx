@@ -1,8 +1,6 @@
 import React from "react";
-
-import { Button } from "@/components/Button";
-
 import * as styles from "./Tags.module.scss";
+import { Button } from "@/components/Button";
 
 type Props = {
   tags: string[];
@@ -16,6 +14,7 @@ const Tags = ({ tags, tagSlugs }: Props) => (
         ? tagSlugs.map((slug, i) => (
             <li className={styles.item} key={slug}>
               <Button
+                isLink={true}
                 className={styles.button}
                 title={tags[i]}
                 key={slug}

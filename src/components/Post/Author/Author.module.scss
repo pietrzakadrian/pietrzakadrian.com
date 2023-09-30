@@ -24,9 +24,19 @@
     }
   }
 
+  p, span, strong {
+    line-height: 1;
+  }
+
   .information {
     align-items: center;
     display: flex;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
   }
 }
 

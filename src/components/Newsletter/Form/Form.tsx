@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import * as styles from "./Form.module.scss";
+import Button from "../../Button/Button";
 
 type FormValues = {
   emailAddress: string;
@@ -64,9 +65,7 @@ const Form: React.FC = () => {
                 </div>
               </div>
 
-              <button className={styles.button} type="submit">
-                Get updates
-              </button>
+              <Button isLink={false} title="Get updates" />
             </form>
 
             <p>No spam, sales or ads. Unsubscribe as your heart desires.</p>

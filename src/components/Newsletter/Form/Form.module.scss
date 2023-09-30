@@ -26,7 +26,7 @@
       .error {
         color: $color-red;
         font-size: 12px;
-        height: 26px;
+        font-weight: bold;
 
         @include breakpoint-sm {
           bottom: -25px;
@@ -37,7 +37,7 @@
 
     .input {
       background-color: var(--color-tag-silver);
-      border: 1px solid var(--color-tag-silver);
+      border: 1px solid var(--color-input-border);
       color: var(--color-typographic-base-font);
       height: 30px;
       margin-right: 5px;

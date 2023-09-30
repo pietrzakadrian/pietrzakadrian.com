@@ -19,7 +19,7 @@ const Author = ({ date, timeToRead }: Props) => {
       <div className={styles.information}>
         <Image alt={author.name} path={author.photo} className={styles.photo} />
 
-        <div>
+        <div className={styles.wrapper}>
           <strong>{author.name}</strong>
           <Meta date={date} timeToRead={timeToRead} />
         </div>

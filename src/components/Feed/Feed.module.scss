@@ -58,13 +58,20 @@
 
     .meta {
       .time {
-        color: var(--color-typographic-base-font);
+        color: $color-gray;
         font-size: $typographic-small-font-size;
         font-weight: 600;
       }
 
       .divider {
-        @include margin(0, 0.5);
+        @include margin(0, 0.25);
+        color: $color-gray;
+      }
+
+      small {
+        color: $color-gray;
+        font-size: $typographic-small-font-size;
+        font-weight: 600;
       }
 
       .category {

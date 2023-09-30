@@ -1,11 +1,8 @@
 import React from "react";
-
+import * as styles from "./Feed.module.scss";
 import { Link } from "gatsby";
-
 import Tags from "@/components/Post/Tags/Tags";
 import { Edge } from "@/types";
-
-import * as styles from "./Feed.module.scss";
 
 type Props = {
   edges: Array<Edge>;
@@ -29,12 +26,8 @@ const Feed: React.FC<Props> = ({ edges }: Props) => (
               day: "numeric",
             })}
           </time>
-          <span className={styles.divider} />
-          <span className={styles.category}>
-            <Link to={edge.node.fields.categorySlug} className={styles.link}>
-              {edge.node.frontmatter.category}
-            </Link>
-          </span>
+          <span className={styles.divider}>—</span>
+          <small>{edge.node.timeToRead} min read</small>
         </div>
         <h2 className={styles.title}>
           <Link
@@ -57,8 +50,6 @@ const Feed: React.FC<Props> = ({ edges }: Props) => (
               />
             </div>
           )}
-
-          <small>{edge.node.timeToRead} min read</small>
         </div>
       </div>
     ))}

@@ -4,7 +4,7 @@ template: "page"
 slug: "/portrait"
 ---
 
-One of the most frequently asked questions is what I do. In order to be able to answer the question: who is **Adrian Pietrzak**? - I will describe my way from childhood to where I am today.
+One of the most frequently asked questions is what I do. In order to be able to answer the question: who is **Adrian Pietrzak**? — I will describe my way from childhood to where I am today.
 
 I have always been interested in web technologies and was exposed to them at a very young age. I started learning HTML and CSS when the Internet was just beginning. I launched my first website when I was 10 years old: https://komiksy.pl.tl.
 
