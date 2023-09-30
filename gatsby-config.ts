@@ -87,7 +87,7 @@ export default {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: "/blog/rss.xml",
             title: config.title,
           },
         ],
