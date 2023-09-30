@@ -1,13 +1,16 @@
 import React from "react";
-import * as styles from "./Post.module.scss";
+
 import { Form as NewsletterForm } from "@/components/Newsletter/Form";
 import { Related } from "@/components/Post/Related";
 import { useSiteMetadata } from "@/hooks";
 import type { Edge, Node } from "@/types";
+
 import { Comments } from "./Comments";
 import { Content } from "./Content";
 import { Copyright } from "./Copyright";
 import { Tags } from "./Tags";
+
+import * as styles from "./Post.module.scss";
 
 interface Props {
   post: Node;

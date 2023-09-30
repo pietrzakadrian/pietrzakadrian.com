@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import * as styles from "./Form.module.scss";
 import Button from "../../Button/Button";
+
+import * as styles from "./Form.module.scss";
 
 type FormValues = {
   emailAddress: string;

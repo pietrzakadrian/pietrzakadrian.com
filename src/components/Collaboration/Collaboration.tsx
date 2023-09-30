@@ -1,6 +1,8 @@
 import React from "react";
+
+import { Button } from "@/components/Button";
+
 import downloadFile from "./report.pdf";
-import {Button} from "@/components/Button";
 
 const Collaboration: React.FC = () => (
   <section>
@@ -11,7 +13,11 @@ const Collaboration: React.FC = () => (
       encountered in the software development process and beyond.
     </p>
 
-    <Button isLink={false} title={"Get the GA4 report for the last 3 months"} to={downloadFile} />
+    <Button
+      isLink={false}
+      title={"Get the GA4 report for the last 3 months"}
+      to={downloadFile}
+    />
 
     <hr />
 

@@ -1,8 +1,11 @@
 import React from "react";
-import * as styles from "./Feed.module.scss";
+
 import { Link } from "gatsby";
+
 import Tags from "@/components/Post/Tags/Tags";
 import { Edge } from "@/types";
+
+import * as styles from "./Feed.module.scss";
 
 type Props = {
   edges: Array<Edge>;

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import * as styles from "./Layout.module.scss";
+
 import { useTheme } from "@/hooks";
+
+import * as styles from "./Layout.module.scss";
 
 interface Props {
   children: React.ReactNode;

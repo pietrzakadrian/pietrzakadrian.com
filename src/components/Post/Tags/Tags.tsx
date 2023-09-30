@@ -1,6 +1,8 @@
 import React from "react";
-import * as styles from "./Tags.module.scss";
+
 import { Button } from "@/components/Button";
+
+import * as styles from "./Tags.module.scss";
 
 type Props = {
   tags: string[];

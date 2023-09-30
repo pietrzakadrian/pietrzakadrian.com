@@ -1,7 +1,9 @@
 import React from "react";
-import * as styles from "./Button.module.scss";
+
 import cn from "classnames";
-import {Link} from "gatsby";
+import { Link } from "gatsby";
+
+import * as styles from "./Button.module.scss";
 
 interface Props {
   isLink: boolean;
@@ -10,7 +12,7 @@ interface Props {
   to?: string;
 }
 
-const Button: React.FC<Props> = ({isLink, className, title, to}: Props) => {
+const Button: React.FC<Props> = ({ isLink, className, title, to }: Props) => {
   const buttonProps = {
     className: cn(styles.button, className),
     children: title,
@@ -20,7 +22,12 @@ const Button: React.FC<Props> = ({isLink, className, title, to}: Props) => {
     return isLink ? (
       <Link to={to} {...buttonProps} />
     ) : (
-      <a target="_blank" rel="noopener noreferrer" className={styles.link} href={to}>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.link}
+        href={to}
+      >
         <button {...buttonProps} />
       </a>
     );
