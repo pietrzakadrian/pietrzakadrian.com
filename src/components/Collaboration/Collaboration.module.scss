@@ -1,0 +1,19 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.collaboration {
+  .button {
+    background-color: var(--color-secondary);
+    color: $color-dark;
+    display: table;
+    margin: 16px auto 26px;
+    padding: 10px 15px;
+    text-align: center;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-primary);
+      cursor: pointer;
+    }
+  }
+}

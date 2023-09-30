@@ -1,0 +1,59 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.newsletter {
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    width: 100%;
+
+    @include breakpoint-sm {
+      flex-direction: row;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+
+      @include breakpoint-sm {
+        max-width: 333px;
+        width: 100%;
+      }
+
+      .error {
+        color: $color-red;
+        font-size: 12px;
+        height: 26px;
+
+        @include breakpoint-sm {
+          bottom: -25px;
+          position: absolute;
+        }
+      }
+    }
+
+    .input {
+      background-color: var(--color-tag-silver);
+      border: 1px solid var(--color-tag-silver);
+      color: var(--color-typographic-base-font);
+      height: 30px;
+      margin-right: 5px;
+      padding: 10px 15px;
+    }
+
+    .button {
+      background-color: var(--color-secondary);
+      line-height: 1;
+      padding: 10px 15px;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-primary);
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+import React from "react";
+import * as styles from "./Collaboration.module.scss";
+import downloadFile from "./report.pdf";
+
+const Collaboration: React.FC = () => (
+  <section className={styles.collaboration}>
+    <p>My blog is visited by thousands of developers and IT-related people from all over the world. With many years of experience as a programmer, my articles become a help to the whole community and help solve problems encountered in the software development process and beyond.</p>
+
+    <p>I'm aiming to continuously expand my expertise in Software Engineering and Web Development through active participation in demanding, real-world projects. I'm driven by a career objective to collaboratively create top-tier software solutions with a dedicated and enthusiastic team.</p>
+
+    <a target="_blank" href={downloadFile} className={styles.button}>Get the GA4 report for the last 3 months</a>
+
+    <hr/>
+
+    <p>If you have any questions for me or would like to collaborate, make me an interesting job offer or start a partnership — you can contact me by email.</p>
+  </section>
+);
+
+export default Collaboration;

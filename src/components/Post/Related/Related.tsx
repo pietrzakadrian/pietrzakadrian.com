@@ -11,8 +11,6 @@ interface Props {
 
 const Related: React.FC<Props> = ({ related }: Props) => (
   <section className={styles.related}>
-    <h2 className={styles.header}>Related articles</h2>
-
     <Feed edges={related} />
   </section>
 );

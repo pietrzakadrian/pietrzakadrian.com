@@ -601,5 +601,3 @@ Please make sure that the company information data is entered in the online form
 This article demonstrates how an integration plugin for the Shopware 6 platform works to streamline the shopping process. It explains what an "shopping cart abandonment" is and shows how to reduce this problem for B2B customers.
 
 You can also find this article on [medium.com](https://medium.com/@pietrzakadrian) where I share my solutions to the problems I encountered during my software engineer career.
-
-If you have additional questions, you can write to me on [LinkedIn](https://www.linkedin.com/in/pietrzakadrian/) or [Twitter](https://twitter.com/pietrzakadrian/).

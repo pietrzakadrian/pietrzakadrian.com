@@ -6,6 +6,9 @@ const routes = Object.freeze({
   tagRoute: "/blog/tag",
   indexRoute: "/blog",
   homeRoute: "/",
+  newsletterRoute: "/newsletter",
+  newsletterConfirmRoute: "/newsletter/confirm",
+  collaborationRoute: "/collaboration",
 });
 
 export default routes;

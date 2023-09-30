@@ -43,6 +43,24 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
     context: {},
   });
 
+  createPage({
+    path: constants.routes.newsletterRoute,
+    component: constants.templates.newsletterTemplate,
+    context: {},
+  });
+
+  createPage({
+    path: constants.routes.newsletterConfirmRoute,
+    component: constants.templates.newsletterConfirmTemplate,
+    context: {},
+  });
+
+  createPage({
+    path: constants.routes.collaborationRoute,
+    component: constants.templates.collaborationTemplate,
+    context: {},
+  });
+
   const pages = await queries.pagesQuery(graphql);
 
   pages.forEach(({ node }) => {
