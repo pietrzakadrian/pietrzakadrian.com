@@ -2,27 +2,42 @@
 
 exports[`Button renders correctly 1`] = `
 <a
-  className=""
   href="/"
+  rel="noopener noreferrer"
+  target="_blank"
 >
-  Button
+  <button
+    className=""
+  >
+    Button
+  </button>
 </a>
 `;
 
 exports[`Button renders correctly with custom class name 1`] = `
 <a
-  className="custom-class-name"
   href="/"
+  rel="noopener noreferrer"
+  target="_blank"
 >
-  Button
+  <button
+    className="custom-class-name"
+  >
+    Button
+  </button>
 </a>
 `;
 
 exports[`Button renders correctly with external link 1`] = `
 <a
-  className=""
   href="https://example.com"
+  rel="noopener noreferrer"
+  target="_blank"
 >
-  Button
+  <button
+    className=""
+  >
+    Button
+  </button>
 </a>
 `;

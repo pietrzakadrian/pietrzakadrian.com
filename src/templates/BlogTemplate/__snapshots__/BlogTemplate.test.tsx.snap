@@ -151,14 +151,12 @@ exports[`BlogTemplate renders correctly 1`] = `
               >
                 September 1, 2016
               </time>
-              <span />
               <span>
-                <a
-                  href="/typography"
-                >
-                  Typography
-                </a>
+                —
               </span>
+              <small>
+                 min read
+              </small>
             </div>
             <h2>
               <a
@@ -170,11 +168,7 @@ exports[`BlogTemplate renders correctly 1`] = `
             <p>
               An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.
             </p>
-            <div>
-              <small>
-                 min read
-              </small>
-            </div>
+            <div />
           </div>
           <div>
             <div>
@@ -183,14 +177,12 @@ exports[`BlogTemplate renders correctly 1`] = `
               >
                 September 1, 2016
               </time>
-              <span />
               <span>
-                <a
-                  href="/design-inspiration"
-                >
-                  Design Inspiration
-                </a>
+                —
               </span>
+              <small>
+                 min read
+              </small>
             </div>
             <h2>
               <a
@@ -202,11 +194,7 @@ exports[`BlogTemplate renders correctly 1`] = `
             <p>
               German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.
             </p>
-            <div>
-              <small>
-                 min read
-              </small>
-            </div>
+            <div />
           </div>
           <div>
             <div>
@@ -215,14 +203,12 @@ exports[`BlogTemplate renders correctly 1`] = `
               >
                 September 1, 2017
               </time>
-              <span />
               <span>
-                <a
-                  href="/typography"
-                >
-                  Typography
-                </a>
+                —
               </span>
+              <small>
+                 min read
+              </small>
             </div>
             <h2>
               <a
@@ -232,11 +218,7 @@ exports[`BlogTemplate renders correctly 1`] = `
               </a>
             </h2>
             <p />
-            <div>
-              <small>
-                 min read
-              </small>
-            </div>
+            <div />
           </div>
         </div>
         <div>

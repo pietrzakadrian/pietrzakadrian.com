@@ -9,7 +9,7 @@ exports[`Author renders correctly 1`] = `
       </strong>
       <div>
         <p>
-          Sep 1, 2016
+          September 1, 2016
         </p>
         <span>
           —
