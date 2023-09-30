@@ -185,7 +185,9 @@ exports[`PostTemplate renders correctly 1`] = `
             </div>
           </div>
           <div />
-          <div />
+          <div>
+            <div />
+          </div>
           <div>
             <h2>
               Newsletter
