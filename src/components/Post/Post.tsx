@@ -38,7 +38,7 @@ const Post: React.FC<Props> = ({post, related}: Props) => {
       </div>
 
       <div className={styles.comments}>
-        <Comments postSlug={slug} postTitle={post.frontmatter.title}/>
+        <Comments />
       </div>
 
       <div className={styles.newsletter}>
@@ -48,12 +48,12 @@ const Post: React.FC<Props> = ({post, related}: Props) => {
 
       {related.length > 0 && (
         <>
-        <hr/>
+          <hr/>
 
-        <div>
-          <h2>Related articles</h2>
-          <Related related={related}/>
-        </div>
+          <div>
+            <h2>Related articles</h2>
+            <Related related={related}/>
+          </div>
         </>
       )}
     </div>

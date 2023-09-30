@@ -1,31 +1,32 @@
-import React from "react";
+import React, {createRef, useEffect} from "react";
+import { useTheme } from "@/hooks";
 
-import { DiscussionEmbed } from "disqus-react";
+const Comments: React.FC = () => {
+  const commentBox = createRef<HTMLDivElement>();
+  const [{ mode }] = useTheme();
 
-import { useSiteMetadata } from "@/hooks";
+  useEffect(() => {
+    let utterances = commentBox?.current?.querySelector(".utterances");
 
-interface Props {
-  postTitle: string;
-  postSlug: string;
-}
+    if (utterances) {
+      commentBox?.current?.removeChild(utterances)
+    }
 
-const Comments: React.FC<Props> = ({ postTitle, postSlug }: Props) => {
-  const { url, disqusShortname } = useSiteMetadata();
+    const scriptElement = document.createElement("script");
+    scriptElement.async = true;
+    scriptElement.src = "https://utteranc.es/client.js";
+    scriptElement.setAttribute("repo", "pietrzakadrian/pietrzakadrian.com-blog-comments");
+    scriptElement.setAttribute("issue-term", "title");
+    scriptElement.setAttribute("id", "utterances");
+    scriptElement.setAttribute("theme", mode === "dark" ? "dark-blue" : "github-light");
+    scriptElement.setAttribute("crossorigin", "anonymous");
 
-  if (!disqusShortname) {
-    return null;
-  }
+    if (commentBox?.current) {
+      commentBox.current.appendChild(scriptElement);
+    }
+  }, [mode]);
 
-  return (
-    <DiscussionEmbed
-      shortname={disqusShortname}
-      config={{
-        url: url + postSlug,
-        identifier: postTitle,
-        title: postTitle,
-      }}
-    />
-  );
+  return <div ref={commentBox} />;
 };
 
 export default Comments;
