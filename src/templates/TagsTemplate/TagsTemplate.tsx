@@ -8,6 +8,7 @@ import { Page } from "@/components/Page";
 import { Sidebar } from "@/components/Sidebar";
 import { useSiteMetadata, useTagsList } from "@/hooks";
 import { toKebabCase } from "@/utils";
+
 import constants from "../../../internal/gatsby/constants/routes";
 
 const TagsTemplate: React.FC = () => {
@@ -20,7 +21,9 @@ const TagsTemplate: React.FC = () => {
         <ul>
           {tags.map((tag) => (
             <li key={tag.fieldValue}>
-              <Link to={`${constants.tagRoute}/${toKebabCase(tag.fieldValue)}/`}>
+              <Link
+                to={`${constants.tagRoute}/${toKebabCase(tag.fieldValue)}/`}
+              >
                 {tag.fieldValue} ({tag.totalCount})
               </Link>
             </li>

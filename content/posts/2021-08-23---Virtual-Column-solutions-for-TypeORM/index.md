@@ -81,7 +81,7 @@ export class UserService {
 
     queryBuilder.addSelect(
       "user.firstName || ' ' || user.lastName",
-      "user_fullName"
+      "user_fullName",
     );
 
     return queryBuilder.getOne();
@@ -144,7 +144,7 @@ export class UserService {
 
     queryBuilder.addSelect(
       "user.firstName || ' ' || user.lastName",
-      "user_fullName"
+      "user_fullName",
     );
 
     return queryBuilder.getRawOne();
@@ -451,7 +451,7 @@ export class UserService {
 
     queryBuilder.addSelect(
       "user.firstName || ' ' || user.lastName",
-      "fullName"
+      "fullName",
     );
 
     return queryBuilder.getMany();
@@ -462,7 +462,7 @@ export class UserService {
 
     queryBuilder.addSelect(
       "user.firstName || ' ' || user.lastName",
-      "fullName"
+      "fullName",
     );
 
     return queryBuilder.getOne();

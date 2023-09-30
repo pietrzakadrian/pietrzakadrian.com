@@ -1,7 +1,8 @@
 import React from "react";
 
-import * as styles from "./Content.module.scss";
 import { Author } from "@/components/Post/Author";
+
+import * as styles from "./Content.module.scss";
 
 interface Props {
   title: string;

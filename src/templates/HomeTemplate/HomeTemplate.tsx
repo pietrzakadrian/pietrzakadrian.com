@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
+
 import { navigate } from "gatsby";
-import routes from '../../../internal/gatsby/constants/routes'
-import {useSiteMetadata} from "@/hooks";
-import {Meta} from "@/components/Meta";
+
+import { Meta } from "@/components/Meta";
+import { useSiteMetadata } from "@/hooks";
+
+import routes from "../../../internal/gatsby/constants/routes";
 
 const HomeTemplate: React.FC = () => {
   useEffect(() => {

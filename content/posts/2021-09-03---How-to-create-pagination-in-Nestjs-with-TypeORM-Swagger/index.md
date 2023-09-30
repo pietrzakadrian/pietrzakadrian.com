@@ -233,7 +233,7 @@ export class UserService {
   constructor(private readonly _userRepository: UserRepository) {}
 
   public async getUsers(
-    pageOptionsDto: PageOptionsDto
+    pageOptionsDto: PageOptionsDto,
   ): Promise<PageDto<UserDto>> {
     const queryBuilder = this._userRepository.createQueryBuilder("user");
 
@@ -297,7 +297,7 @@ export class UserController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async getUsers(
-    @Query() pageOptionsDto: PageOptionsDto
+    @Query() pageOptionsDto: PageOptionsDto,
   ): Promise<PageDto<UserDto>> {
     return this._userService.getUsers(pageOptionsDto);
   }
@@ -435,7 +435,7 @@ import { ApiExtraModels, ApiOkResponse, getSchemaPath } from "@nestjs/swagger";
 import { PageDto } from "src/common/dtos";
 
 export const ApiPaginatedResponse = <TModel extends Type<any>>(
-  model: TModel
+  model: TModel,
 ) => {
   return applyDecorators(
     ApiExtraModels(PageDto),
@@ -454,7 +454,7 @@ export const ApiPaginatedResponse = <TModel extends Type<any>>(
           },
         ],
       },
-    })
+    }),
   );
 };
 ```
@@ -537,4 +537,3 @@ Now when you go to `http://localhost:3000/documentation`, you will get the docum
 ---
 
 You can also find this article on [medium.com](https://medium.com/@pietrzakadrian) where I share my solutions to the problems I encountered during my software engineer career.
-

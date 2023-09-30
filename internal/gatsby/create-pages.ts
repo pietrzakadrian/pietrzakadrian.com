@@ -74,7 +74,11 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
       createPage({
         path: node?.frontmatter?.slug || node.fields.slug,
         component: constants.templates.postTemplate,
-        context: {slug: node.fields.slug, groups: node.frontmatter.tags || [], id: node.id},
+        context: {
+          slug: node.fields.slug,
+          groups: node.frontmatter.tags || [],
+          id: node.id,
+        },
       });
     }
   });

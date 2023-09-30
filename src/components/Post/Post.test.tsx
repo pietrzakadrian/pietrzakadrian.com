@@ -1,12 +1,10 @@
 import React from "react";
 
-import { screen } from "@testing-library/react";
 import { StaticQuery, useStaticQuery } from "gatsby";
 
 import { Post } from "@/components/Post";
 import * as mocks from "@/mocks";
 import { testUtils } from "@/utils";
-import { renderWithCoilProvider } from "@/utils/test-utils";
 
 const mockedStaticQuery = StaticQuery as jest.Mock;
 const mockedUseStaticQuery = useStaticQuery as jest.Mock;
@@ -20,7 +18,10 @@ describe("Post", () => {
   });
 
   test("renders correctly", () => {
-    const props = { post: mocks.markdownRemark, related: mocks.allMarkdownRemark.edges };
+    const props = {
+      post: mocks.markdownRemark,
+      related: mocks.allMarkdownRemark.edges,
+    };
     const tree = testUtils
       .createSnapshotsRenderer(<Post {...props} />)
       .toJSON();

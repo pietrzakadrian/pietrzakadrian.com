@@ -1,10 +1,11 @@
 import React from "react";
-import {useSiteMetadata} from "@/hooks";
-import {Meta} from "@/components/Meta";
-import {Layout} from "@/components/Layout";
-import {Sidebar} from "@/components/Sidebar";
-import {Page} from "@/components/Page";
-import {Collaboration} from "@/components/Collaboration";
+
+import { Collaboration } from "@/components/Collaboration";
+import { Layout } from "@/components/Layout";
+import { Meta } from "@/components/Meta";
+import { Page } from "@/components/Page";
+import { Sidebar } from "@/components/Sidebar";
+import { useSiteMetadata } from "@/hooks";
 
 const CollaborationTemplate: React.FC = () => (
   <Layout>

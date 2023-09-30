@@ -34,7 +34,9 @@ describe("TagsTemplate", () => {
     expect(testUtils.getMeta("twitter:title")).toEqual(
       "Tags — Blog by John Doe: Software Engineering Blog",
     );
-    expect(testUtils.getMeta("og:title")).toEqual("Tags — Blog by John Doe: Software Engineering Blog");
+    expect(testUtils.getMeta("og:title")).toEqual(
+      "Tags — Blog by John Doe: Software Engineering Blog",
+    );
     expect(testUtils.getMeta("description")).toEqual(
       "Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.",
     );

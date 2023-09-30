@@ -15,7 +15,12 @@ const Tags = ({ tags, tagSlugs }: Props) => (
       {tagSlugs
         ? tagSlugs.map((slug, i) => (
             <li className={styles.item} key={slug}>
-              <Button className={styles.button} title={tags[i]} key={slug} to={slug} />
+              <Button
+                className={styles.button}
+                title={tags[i]}
+                key={slug}
+                to={slug}
+              />
             </li>
           ))
         : null}

@@ -19,9 +19,7 @@ const Meta: React.FC<Props> = ({ date, timeToRead }: Props) => (
 
     <span>—</span>
 
-    <p>
-      {timeToRead} min read
-    </p>
+    <p>{timeToRead} min read</p>
   </div>
 );
 

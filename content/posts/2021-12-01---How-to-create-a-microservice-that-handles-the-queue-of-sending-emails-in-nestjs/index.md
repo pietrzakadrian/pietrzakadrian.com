@@ -155,7 +155,10 @@ import { Transport, MicroserviceOptions } from "@nestjs/microservices";
 import { AppModule } from "./app";
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, { transport: Transport.TCP });
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    { transport: Transport.TCP },
+  );
 
   app.listen();
 }
@@ -226,11 +229,18 @@ import { CONFIRM_REGISTRATION, MAIL_QUEUE } from "../constants";
 export class MailProcessor {
   private readonly _logger = new Logger(MailProcessor.name);
 
-  constructor(private readonly _mailerService: MailerService, private readonly _configService: ConfigService) {}
+  constructor(
+    private readonly _mailerService: MailerService,
+    private readonly _configService: ConfigService,
+  ) {}
 
   @Process(CONFIRM_REGISTRATION) // here is the name of the executed process
-  public async confirmRegistration(job: Job<{ emailAddress: string; confirmUrl: string }>) {
-    this._logger.log(`Sending confirm registration email to '${job.data.emailAddress}'`);
+  public async confirmRegistration(
+    job: Job<{ emailAddress: string; confirmUrl: string }>,
+  ) {
+    this._logger.log(
+      `Sending confirm registration email to '${job.data.emailAddress}'`,
+    );
 
     try {
       return this._mailerService.sendMail({
@@ -241,7 +251,9 @@ export class MailProcessor {
         context: { confirmUrl: job.data.confirmUrl }, // here you pass the variables that you use in the hbs template
       });
     } catch {
-      this._logger.error(`Failed to send confirmation email to '${job.data.emailAddress}'`);
+      this._logger.error(
+        `Failed to send confirmation email to '${job.data.emailAddress}'`,
+      );
     }
   }
 }
@@ -288,14 +300,19 @@ export class MailService {
 
   constructor(@InjectQueue(MAIL_QUEUE) private readonly _mailQueue: Queue) {}
 
-  public async sendConfirmationEmail(emailAddress: string, confirmUrl: string): Promise<void> {
+  public async sendConfirmationEmail(
+    emailAddress: string,
+    confirmUrl: string,
+  ): Promise<void> {
     try {
       await this._mailQueue.add(CONFIRM_REGISTRATION, {
         emailAddress,
         confirmUrl,
       });
     } catch (error) {
-      this._logger.error(`Error queueing registration email to user ${emailAddress}`);
+      this._logger.error(
+        `Error queueing registration email to user ${emailAddress}`,
+      );
 
       throw error;
     }
@@ -320,7 +337,10 @@ export class MailController {
   constructor(private readonly _mailService: MailService) {}
 
   @EventPattern({ cmd: "send-message" })
-  async sendConfirmationEmail(emailAddress: string, confirmUrl: string): Promise<void> {
+  async sendConfirmationEmail(
+    emailAddress: string,
+    confirmUrl: string,
+  ): Promise<void> {
     return this._mailService.sendConfirmationEmail(emailAddress, confirmUrl);
   }
 }
@@ -567,7 +587,10 @@ describe("MailService", () => {
   });
 
   it("should dispatch job", async () => {
-    await service.sendConfirmationEmail("test@test.com", "http://link.com?token=ey");
+    await service.sendConfirmationEmail(
+      "test@test.com",
+      "http://link.com?token=ey",
+    );
 
     expect(exampleQueueMock.add).toHaveBeenCalledWith(CONFIRM_REGISTRATION, {
       confirmUrl: "http://link.com?token=ey",

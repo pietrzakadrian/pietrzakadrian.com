@@ -201,7 +201,7 @@ export default class FormVatValidationPlugin extends FormValidation {
     this._registerValidationListener(
       this.options.vatAttr,
       this._onValidateVat.bind(this),
-      ["change"]
+      ["change"],
     );
   }
 
@@ -245,18 +245,18 @@ export default class VatValidationLoaderDataPlugin extends Plugin {
   init() {
     this._client = new StoreApiClient();
     this.$companyVatId = this.el.querySelector(
-      this.options.companyVatIdSelector
+      this.options.companyVatIdSelector,
     );
     this.$companyName = this.el.querySelector(this.options.companyNameSelector);
     this.$companyAddress = this.el.querySelector(
-      this.options.companyAddressSelector
+      this.options.companyAddressSelector,
     );
     this.$companyZipcode = this.el.querySelector(
-      this.options.companyZipcodeSelector
+      this.options.companyZipcodeSelector,
     );
     this.$companyCity = this.el.querySelector(this.options.companyCitySelector);
     this.$companyCountry = this.el.querySelector(
-      this.options.companyCountrySelector
+      this.options.companyCountrySelector,
     );
 
     this._registerEvents();
@@ -298,7 +298,7 @@ export default class VatValidationLoaderDataPlugin extends Plugin {
     const { traderName, traderAddress } = JSON.parse(response);
     const formattedTraderAddress = traderAddress.replace("\n", ", ");
     const [, address, zipCode, city] = formattedTraderAddress.match(
-      /^([^,]+), (\S+) ([^,]+)$/
+      /^([^,]+), (\S+) ([^,]+)$/,
     );
 
     this._setInputValue(this.$companyName, traderName);

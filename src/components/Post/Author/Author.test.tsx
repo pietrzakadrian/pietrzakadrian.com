@@ -21,10 +21,12 @@ describe("Author", () => {
   test("renders correctly", () => {
     const props = {
       date: mocks.markdownRemark.frontmatter.date,
-      timeToRead: mocks.markdownRemark.frontmatter.timeToRead
+      timeToRead: mocks.markdownRemark.frontmatter.timeToRead,
     };
 
-    const tree = testUtils.createSnapshotsRenderer(<Author {...props} />).toJSON();
+    const tree = testUtils
+      .createSnapshotsRenderer(<Author {...props} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

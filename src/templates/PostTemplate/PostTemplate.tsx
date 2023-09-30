@@ -1,14 +1,14 @@
 import React from "react";
 
-import {graphql} from "gatsby";
+import { graphql } from "gatsby";
 
-import {Layout} from "@/components/Layout";
-import {Meta} from "@/components/Meta";
-import {Post} from "@/components/Post";
-import {useSiteMetadata} from "@/hooks";
-import {AllMarkdownRemark, Node} from "@/types";
-import {Sidebar} from "@/components/Sidebar";
-import {Page} from "@/components/Page";
+import { Layout } from "@/components/Layout";
+import { Meta } from "@/components/Meta";
+import { Page } from "@/components/Page";
+import { Post } from "@/components/Post";
+import { Sidebar } from "@/components/Sidebar";
+import { useSiteMetadata } from "@/hooks";
+import { AllMarkdownRemark, Node } from "@/types";
 
 interface Props {
   data: {
@@ -17,18 +17,16 @@ interface Props {
   };
 }
 
-const PostTemplate: React.FC<Props> = ({data: {markdownRemark, allMarkdownRemark}}: Props) => {
-  console.log(allMarkdownRemark);
-
-  return (
-    <Layout>
-      <Sidebar/>
-      <Page>
-        <Post post={markdownRemark} related={allMarkdownRemark.edges}/>
-      </Page>
-    </Layout>
-  )
-};
+const PostTemplate: React.FC<Props> = ({
+  data: { markdownRemark, allMarkdownRemark },
+}: Props) => (
+  <Layout>
+    <Sidebar />
+    <Page>
+      <Post post={markdownRemark} related={allMarkdownRemark.edges} />
+    </Page>
+  </Layout>
+);
 
 export const query = graphql`
   query PostTemplate($slug: String!, $groups: [String]!, $id: String!) {
@@ -86,8 +84,8 @@ export const query = graphql`
   }
 `;
 
-export const Head: React.FC<Props> = ({data}) => {
-  let {title, subtitle, url} = useSiteMetadata();
+export const Head: React.FC<Props> = ({ data }) => {
+  let { title, subtitle, url } = useSiteMetadata();
   title = `${title}: Software Engineering Blog`;
 
   const {

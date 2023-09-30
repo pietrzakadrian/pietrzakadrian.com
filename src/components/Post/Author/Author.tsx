@@ -1,13 +1,11 @@
 import React from "react";
 
+import { Image } from "@/components/Image";
+import { Meta } from "@/components/Post/Meta";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { useSiteMetadata } from "@/hooks";
-import { getContactHref } from "@/utils";
 
 import * as styles from "./Author.module.scss";
-import {ThemeSwitcher} from "@/components/ThemeSwitcher";
-import {Link} from "gatsby";
-import {Image} from "@/components/Image";
-import {Meta} from "@/components/Post/Meta";
 
 interface Props {
   date: string;
@@ -19,7 +17,7 @@ const Author = ({ date, timeToRead }: Props) => {
   return (
     <div className={styles.author}>
       <div className={styles.information}>
-        <Image alt={author.name} path={author.photo} className={styles.photo}/>
+        <Image alt={author.name} path={author.photo} className={styles.photo} />
 
         <div>
           <strong>{author.name}</strong>

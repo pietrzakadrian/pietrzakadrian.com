@@ -3,10 +3,10 @@ import React from "react";
 import { Link } from "gatsby";
 
 import { Image } from "@/components/Image";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+
+import constants from "../../../../internal/gatsby/constants/routes";
 
 import * as styles from "./Author.module.scss";
-import constants from "../../../../internal/gatsby/constants/routes";
 
 type Props = {
   author: {

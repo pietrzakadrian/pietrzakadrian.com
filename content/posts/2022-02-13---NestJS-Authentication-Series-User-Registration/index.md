@@ -273,7 +273,7 @@ export class SnakeNamingStrategy
   columnName(
     propertyName: string,
     customName: string,
-    embeddedPrefixes: string[]
+    embeddedPrefixes: string[],
   ): string {
     return (
       snakeCase(embeddedPrefixes.join("_")) +
@@ -293,30 +293,30 @@ export class SnakeNamingStrategy
     firstTableName: string,
     secondTableName: string,
     firstPropertyName: string,
-    _secondPropertyName: string
+    _secondPropertyName: string,
   ): string {
     return snakeCase(
       firstTableName +
         "_" +
         firstPropertyName.replace(/\./gi, "_") +
         "_" +
-        secondTableName
+        secondTableName,
     );
   }
 
   joinTableColumnName(
     tableName: string,
     propertyName: string,
-    columnName?: string
+    columnName?: string,
   ): string {
     return snakeCase(
-      tableName + "_" + (columnName ? columnName : propertyName)
+      tableName + "_" + (columnName ? columnName : propertyName),
     );
   }
 
   classTableInheritanceParentColumnName(
     parentTableName: string,
-    parentTableIdPropertyName: string
+    parentTableIdPropertyName: string,
   ): string {
     return snakeCase(`${parentTableName}_${parentTableIdPropertyName}`);
   }
@@ -462,7 +462,7 @@ export class UserEntity extends AbstractEntity {
   @OneToOne(
     () => AuthenticationEntity,
     (authentication: AuthenticationEntity) => authentication.user,
-    { eager: true, nullable: false, onDelete: "CASCADE" }
+    { eager: true, nullable: false, onDelete: "CASCADE" },
   )
   @JoinColumn()
   @Index()
@@ -522,7 +522,7 @@ export class UserService {
   async createUser(
     createUserDto: CreateUserDto,
     authentication: AuthenticationEntity,
-    queryRunner: QueryRunner
+    queryRunner: QueryRunner,
   ): Promise<UserEntity> {
     const user = this._userRepository.create({
       ...createUserDto,
@@ -676,7 +676,7 @@ export class AuthenticationSubscriber
   }: InsertEvent<AuthenticationEntity>): Promise<void> {
     if (entity.password) {
       entity.password = await AuthenticationProvider.generateHash(
-        entity.password
+        entity.password,
       );
     }
 
@@ -691,7 +691,7 @@ export class AuthenticationSubscriber
   }: UpdateEvent<AuthenticationEntity>): Promise<void> {
     if (entity.password) {
       const password = await AuthenticationProvider.generateHash(
-        entity.password
+        entity.password,
       );
 
       if (password !== databaseEntity?.password) {
@@ -748,7 +748,7 @@ export class AuthenticationService {
   constructor(
     private readonly _authenticationRepository: AuthenticationRepository,
     private readonly _userService: UserService,
-    private readonly _connection: Connection
+    private readonly _connection: Connection,
   ) {}
 
   async registration(registrationDto: RegistrationDto): Promise<UserEntity> {
@@ -761,13 +761,13 @@ export class AuthenticationService {
     try {
       const authentication = await this._createAuthentication(
         registrationDto,
-        queryRunner
+        queryRunner,
       );
 
       user = await this._userService.createUser(
         registrationDto,
         authentication,
-        queryRunner
+        queryRunner,
       );
 
       await queryRunner.commitTransaction();
@@ -788,10 +788,10 @@ export class AuthenticationService {
 
   private async _createAuthentication(
     createAuthenticationDto: CreateAuthenticationDto,
-    queryRunner: QueryRunner
+    queryRunner: QueryRunner,
   ): Promise<AuthenticationEntity> {
     const authentication = this._authenticationRepository.create(
-      createAuthenticationDto
+      createAuthenticationDto,
     );
 
     return queryRunner.manager.save(authentication);
@@ -842,7 +842,7 @@ export class AuthenticationController {
   @Post("registration")
   @HttpCode(HttpStatus.OK)
   async registration(
-    @Body() registrationDto: RegistrationDto
+    @Body() registrationDto: RegistrationDto,
   ): Promise<UserEntity> {
     return this._authenticationService.registration(registrationDto);
   }
@@ -973,7 +973,7 @@ export function setupSwagger(app: INestApplication): void {
     .setContact(
       "Adrian Pietrzak",
       "https://pietrzakadrian.com",
-      "contact@pietrzakadrian.com"
+      "contact@pietrzakadrian.com",
     )
     .build();
 
