@@ -24,15 +24,21 @@
       }
 
       .error {
+        bottom: 0;
         color: $color-red;
         font-size: 12px;
         font-weight: bold;
+        position: absolute;
 
         @include breakpoint-sm {
           bottom: -25px;
-          position: absolute;
         }
       }
+    }
+
+    .button {
+      line-height: 1;
+      min-height: 50px;
     }
 
     .input {
@@ -40,20 +46,12 @@
       border: 1px solid var(--color-input-border);
       color: var(--color-typographic-base-font);
       height: 30px;
-      margin-right: 5px;
+      margin-bottom: 25px;
       padding: 10px 15px;
-    }
 
-    .button {
-      background-color: var(--color-secondary);
-      color: var(--color-white);
-      line-height: 1;
-      padding: 10px 15px;
-      transition: background-color 0.2s ease;
-
-      &:hover {
-        background-color: var(--color-primary);
-        cursor: pointer;
+      @include breakpoint-sm {
+        margin-bottom: 0;
+        margin-right: 5px;
       }
     }
   }

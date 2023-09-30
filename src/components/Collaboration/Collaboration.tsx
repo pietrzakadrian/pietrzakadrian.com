@@ -3,9 +3,10 @@ import React from "react";
 import { Button } from "@/components/Button";
 
 import downloadFile from "./report.pdf";
+import * as styles from "./Collaboration.module.scss";
 
 const Collaboration: React.FC = () => (
-  <section>
+  <section className={styles.collaboration}>
     <p>
       My blog is visited by thousands of developers and IT-related people from
       all over the world. With many years of experience as a programmer, my
@@ -14,6 +15,7 @@ const Collaboration: React.FC = () => (
     </p>
 
     <Button
+      className={styles.button}
       isLink={false}
       title={"Get the GA4 report for the last 3 months"}
       to={downloadFile}

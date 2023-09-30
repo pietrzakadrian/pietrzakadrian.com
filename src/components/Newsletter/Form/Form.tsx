@@ -72,7 +72,7 @@ const Form: React.FC = () => {
                 </div>
               </div>
 
-              <Button isLink={false} title="Get updates" />
+              <Button className={styles.button} isLink={false} title="Get updates" />
             </form>
 
             <p>No spam, sales or ads. Unsubscribe as your heart desires.</p>
