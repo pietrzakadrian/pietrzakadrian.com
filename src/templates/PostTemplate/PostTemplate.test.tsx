@@ -23,6 +23,7 @@ describe("PostTemplate", () => {
     const props = {
       data: {
         markdownRemark: mocks.markdownRemark,
+        allMarkdownRemark: mocks.allMarkdownRemark,
       },
     };
 
@@ -36,6 +37,7 @@ describe("PostTemplate", () => {
     const props = {
       data: {
         markdownRemark: mocks.markdownRemarkWithoutDescription,
+        allMarkdownRemark: mocks.allMarkdownRemark,
       },
     };
 

@@ -9,7 +9,7 @@ import { useSiteMetadata } from "@/hooks";
 const NotFoundTemplate: React.FC = () => (
   <Layout>
     <Sidebar />
-    <Page title="NOT FOUND">
+    <Page title="Not Found">
       <p>You just hit a route that doesn't exist... the sadness.</p>
     </Page>
   </Layout>

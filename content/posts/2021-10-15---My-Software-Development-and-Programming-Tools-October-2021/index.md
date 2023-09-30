@@ -76,5 +76,3 @@ In this article, I will present a list of all the tools that I use on a daily ba
 In this article, I have introduced you to all the tools I use in my work as a full-stack software engineer.
 
 You can also find this article on [medium.com](https://medium.com/@pietrzakadrian) where I share my solutions to the problems I encountered during my software engineer career.
-
-If you have additional questions, you can write to me on [LinkedIn](https://www.linkedin.com/in/pietrzakadrian/) or [Twitter](https://twitter.com/pietrzakadrian/).

@@ -43,31 +43,39 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
     context: {},
   });
 
+  createPage({
+    path: constants.routes.newsletterRoute,
+    component: constants.templates.newsletterTemplate,
+    context: {},
+  });
+
+  createPage({
+    path: constants.routes.newsletterConfirmRoute,
+    component: constants.templates.newsletterConfirmTemplate,
+    context: {},
+  });
+
+  createPage({
+    path: constants.routes.collaborationRoute,
+    component: constants.templates.collaborationTemplate,
+    context: {},
+  });
+
   const pages = await queries.pagesQuery(graphql);
 
   pages.forEach(({ node }) => {
-    if (node?.fields?.slug) {
-      switch (node?.frontmatter?.template) {
-        case "page": {
-          createPage({
-            path: node?.frontmatter?.slug || node.fields.slug,
-            component: constants.templates.pageTemplate,
-            context: {slug: node.fields.slug},
-          });
-
-          break;
-        }
-
-        case "post": {
-          createPage({
-            path: node?.frontmatter?.slug || node.fields.slug,
-            component: constants.templates.postTemplate,
-            context: { slug: node.fields.slug },
-          });
-
-          break;
-        }
-      }
+    if (node?.frontmatter?.template === "page" && node?.fields?.slug) {
+      createPage({
+        path: node?.frontmatter?.slug || node.fields.slug,
+        component: constants.templates.pageTemplate,
+        context: { slug: node.fields.slug },
+      });
+    } else if (node?.frontmatter?.template === "post" && node?.fields?.slug) {
+      createPage({
+        path: node?.frontmatter?.slug || node.fields.slug,
+        component: constants.templates.postTemplate,
+        context: {slug: node.fields.slug, groups: node.frontmatter.tags || [], id: node.id},
+      });
     }
   });
 

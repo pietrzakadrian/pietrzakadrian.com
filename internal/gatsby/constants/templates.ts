@@ -7,6 +7,15 @@ const templates = Object.freeze({
   homeTemplate: path.resolve(
     "./src/templates/HomeTemplate/HomeTemplate.tsx",
   ),
+  newsletterTemplate: path.resolve(
+    "./src/templates/NewsletterTemplate/NewsletterTemplate.tsx",
+  ),
+  newsletterConfirmTemplate: path.resolve(
+    "./src/templates/NewsletterConfirmTemplate/NewsletterConfirmTemplate.tsx",
+  ),
+  collaborationTemplate: path.resolve(
+    "./src/templates/CollaborationTemplate/CollaborationTemplate.tsx",
+  ),
   notFoundTemplate: path.resolve(
     "./src/templates/NotFoundTemplate/NotFoundTemplate.tsx",
   ),
