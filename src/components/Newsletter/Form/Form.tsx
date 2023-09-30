@@ -11,7 +11,8 @@ type FormValues = {
 
 const Form: React.FC = () => {
   const ENDPOINT = "https://api.convertkit.com/v3/forms/";
-  const { CONVERTKIT_PUBLIC_KEY, CONVERTKIT_SIGNUP_FORM } = process.env;
+  const CONVERTKIT_SIGNUP_FORM = process.env.GATSBY_CONVERTKIT_SIGNUP_FORM;
+  const CONVERTKIT_PUBLIC_KEY = process.env.GATSBY_CONVERTKIT_PUBLIC_KEY;
 
   const [status, setStatus] = useState("idle");
   const {
@@ -22,7 +23,7 @@ const Form: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      await fetch(`${ENDPOINT}${CONVERTKIT_SIGNUP_FORM}/subscribe`, {
+      const response = await fetch(`${ENDPOINT}${CONVERTKIT_SIGNUP_FORM}/subscribe`, {
         method: "POST",
         body: JSON.stringify({
           email: data.emailAddress,
@@ -33,7 +34,12 @@ const Form: React.FC = () => {
           charset: "utf-8",
         },
       });
-      setStatus("success");
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("failed");
+      }
     } catch (err) {
       setStatus("failed");
     }
