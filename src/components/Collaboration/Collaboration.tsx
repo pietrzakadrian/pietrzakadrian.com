@@ -3,7 +3,6 @@ import React from "react";
 import { Button } from "@/components/Button";
 
 import downloadFile from "./report.pdf";
-
 import * as styles from "./Collaboration.module.scss";
 
 const Collaboration: React.FC = () => (
