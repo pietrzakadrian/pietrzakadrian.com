@@ -1,7 +1,7 @@
 {
-  "name": "pietrzakadrian.com",
+  "name": "gatsby-starter-lumen",
   "version": "1.4.1032",
-  "description": "Personal website with software engineering blog using Gatsby.js",
+  "description": "A constantly evolving and thoughtful architecture for creating static blogs with Gatsby",
   "keywords": [
     "gatsby",
     "graphql",
@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/pietrzakadrian/pietrzakadrian.com.git"
+    "url": "https://github.com/alxshelepenok/gatsby-starter-lumen.git"
   },
   "license": "MIT",
-  "author": "Adrian Pietrzak <contact@pietrzakadrian.com>",
+  "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
   "scripts": {
     "deploy": "npm run clean && gatsby build --prefix-paths && cp ./content/CNAME public/ && gh-pages -d public",
     "build": "npm run clean && gatsby build",
