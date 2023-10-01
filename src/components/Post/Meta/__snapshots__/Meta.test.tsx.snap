@@ -3,7 +3,7 @@
 exports[`Meta renders correctly 1`] = `
 <div>
   <p>
-    September 1, 2016
+    Sep 1, 2016
   </p>
   <span>
     —
