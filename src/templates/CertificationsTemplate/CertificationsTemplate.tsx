@@ -1,11 +1,11 @@
 import React from "react";
 
+import { Certifications } from "@/components/Certifications";
 import { Layout } from "@/components/Layout";
 import { Meta } from "@/components/Meta";
 import { Page } from "@/components/Page";
 import { Sidebar } from "@/components/Sidebar";
 import { useSiteMetadata } from "@/hooks";
-import { Certifications } from "@/components/Certifications";
 
 const CertificationsTemplate: React.FC = () => (
   <Layout>

@@ -35,6 +35,7 @@ Speaking up, looking away will result in the examination being **terminated**. T
 # Preparing for the exam
 
 In the first instance, you need to familiarise yourself with the exam rules before you start studying.
+
 - [Visit the site](https://aws.amazon.com/certification/certified-cloud-practitioner/) and read all the information that Amazon has posted.
 
 # Passing conditions
@@ -44,6 +45,7 @@ In the first instance, you need to familiarise yourself with the exam rules befo
 # Difficulty level
 
 As I mentioned, my study lasted **7 days**. You need to remember one thing — the exam is straightforward but **not trivial**. If you haven't had experience with cloud technology before, you're likely to sacrifice long evenings.
+
 - If you focus enough and take it seriously, this time will be enough.
 
 # Learning process
