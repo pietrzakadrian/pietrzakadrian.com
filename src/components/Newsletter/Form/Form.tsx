@@ -23,17 +23,20 @@ const Form: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const response = await fetch(`${ENDPOINT}${CONVERTKIT_SIGNUP_FORM}/subscribe`, {
-        method: "POST",
-        body: JSON.stringify({
-          email: data.emailAddress,
-          api_key: CONVERTKIT_PUBLIC_KEY,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          charset: "utf-8",
+      const response = await fetch(
+        `${ENDPOINT}${CONVERTKIT_SIGNUP_FORM}/subscribe`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: data.emailAddress,
+            api_key: CONVERTKIT_PUBLIC_KEY,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            charset: "utf-8",
+          },
         },
-      });
+      );
 
       if (response.ok) {
         setStatus("success");
@@ -72,7 +75,11 @@ const Form: React.FC = () => {
                 </div>
               </div>
 
-              <Button className={styles.button} isLink={false} title="Get updates" />
+              <Button
+                className={styles.button}
+                isLink={false}
+                title="Get updates"
+              />
             </form>
 
             <p>No spam, sales or ads. Unsubscribe as your heart desires.</p>

@@ -16,13 +16,18 @@
       "label": "Portrait",
       "path": "/portrait"
     },
+
+    {
+      "label": "Newsletter",
+      "path": "/newsletter"
+    },
     {
       "label": "Tools",
       "path": "/tools"
     },
     {
-      "label": "Newsletter",
-      "path": "/newsletter"
+      "label": "Certifications",
+      "path": "/certifications"
     },
     {
       "label": "Collaboration ✨",

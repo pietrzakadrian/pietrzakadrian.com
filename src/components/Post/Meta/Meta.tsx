@@ -12,7 +12,7 @@ const Meta: React.FC<Props> = ({ date, timeToRead }: Props) => (
     <p>
       {new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
-        month: "long",
+        month: "short",
         day: "numeric",
       })}
     </p>
