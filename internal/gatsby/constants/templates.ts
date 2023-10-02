@@ -12,6 +12,9 @@ const templates = Object.freeze({
   collaborationTemplate: path.resolve(
     "./src/templates/CollaborationTemplate/CollaborationTemplate.tsx",
   ),
+  certificationsTemplate: path.resolve(
+    "./src/templates/CertificationsTemplate/CertificationsTemplate.tsx",
+  ),
   notFoundTemplate: path.resolve(
     "./src/templates/NotFoundTemplate/NotFoundTemplate.tsx",
   ),

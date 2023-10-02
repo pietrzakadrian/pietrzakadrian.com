@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef, useEffect } from "react";
 
 import { useSiteMetadata } from "@/hooks";
 
@@ -15,12 +15,15 @@ type Props = {
 const Sidebar = ({ isIndex }: Props) => {
   const { author, menu } = useSiteMetadata();
 
+
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.inner}>
         <Author author={author} isIndex={isIndex} />
         <Menu menu={menu} />
         <Contacts contacts={author.contacts} />
+
       </div>
     </div>
   );

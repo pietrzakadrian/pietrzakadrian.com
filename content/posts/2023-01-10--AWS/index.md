@@ -4,7 +4,7 @@ date: "2023-10-01T20:40:32.169Z"
 template: "post"
 draft: false
 slug: "/blog/i-passed-the-aws-certified-cloud-practitioner-in-7-days-here-is-how"
-category: "AWS Certification"
+category: "AWS Certifications"
 tags:
   - "AWS"
   - "Cloud"
@@ -26,7 +26,6 @@ Looking at the total IT industry and modern software development, I decided that
 
 # Before you consider cheating on the exam
 
-AI would easily answer these questions — but not when you writing the exam.
 If you want to take the exam in your home, you must show your room on the camera before the exam begins. You cannot have other devices and external display.
 
 - You and your computer screen are recorded during the exam!
@@ -49,14 +48,15 @@ As I mentioned, my study lasted **7 days**. You need to remember one thing — t
 
 # Learning process
 
-Remember that it's not just about passing and forgetting. You want to become a cloud engineer. You need to know all this and be able to put it into practice.
-I recommend that you familiarize yourself with the scope of knowledge that is worth knowing.
+> **Note**: Remember that it's not just about passing and forgetting. You want to become a cloud engineer. You need to know all this and be able to put it into practice!
 
 This course is very good and gives you the best way to familiarise yourself with AWS technology. I used it myself and the first 2-3 days I watched and listened to it for most of the day.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SOTamWNgDKc?si=2vFyWhla31cqk-jw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-This course only allowed you to familiarise yourself with AWS, but in my opinion the exam is not easy enough to pass above 70% by watching a one video for a few days.
+Of course, you won't be able to perfectly master the AWS cloud in this time, but you will be introduced to the technology to increase your passing score on Amazon's easiest exam.
+
+In my opinion the exam is not easy enough to pass above 70% by watching a one video for a few days.
 
 - Questions can be complicated, answers difficult to choose!
 
@@ -66,9 +66,11 @@ With help comes the **brilliant** youtuber Cloud Guru, who in his videos solves 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=NMtwXafcVeUvtEPP&amp;list=PL_0RK_1F4sTDNZOzu4aQ0h7RBA6tPwuUj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-There are over 150 videos for you to watch and study. I advise you not to waste any more time reading this article and just start.
+There are over 150 videos to watch and study. I advise you not to waste any more time reading this article and just start doing it.
 
-I believe you will make it and after the exam you will be able to show off a cool badge like [I have](https://www.credly.com/badges/aeba96c1-d7f0-4d1d-bf1c-6555f1001746/public_url) 😎.
+Preparing to pass the exam is all about solving as many questions as possible. I watched all the videos in this playlist before scheduling my exam date.
+
+In my opinion, the sources I have presented are completely sufficient to pass the AWS Certified Cloud Practitioner exam.
 
 ---
 

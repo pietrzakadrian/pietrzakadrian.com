@@ -9,6 +9,7 @@ const routes = Object.freeze({
   newsletterRoute: "/newsletter",
   newsletterConfirmRoute: "/newsletter/confirm",
   collaborationRoute: "/collaboration",
+  certificationsListRoute: "/certifications",
 });
 
 export default routes;
