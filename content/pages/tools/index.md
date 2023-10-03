@@ -10,10 +10,9 @@ Last updated: 30.09.2023, 10:21 PM
 
 1. **Apple MacBook Pro 16” 2021** — M2 Max, 64 GB RAM, 1 TB SSD
 2. **Apple iPhone 14 Pro Max** — 256 GB
-3. **Apple AirPods** (3rd generation)
-4. **Logitech MX Master 3S**
-5. [**Autonomous SmartDesk Pro**](https://www.autonomous.ai/standing-desks/smartdesk-2-business?option1=1&option2=8&option16=36&option17=41&purchase_method=1)
-6. [**Autonomous ErgoChair Plus**](https://www.autonomous.ai/office-chairs/kinn-chair?option1559=1884&purchase_method=1)
+3. **Logitech MX Master 3S**
+4. [**Autonomous SmartDesk Pro**](https://www.autonomous.ai/standing-desks/smartdesk-2-business?option1=1&option2=8&option16=36&option17=41&purchase_method=1)
+5. [**Autonomous ErgoChair Plus**](https://www.autonomous.ai/office-chairs/kinn-chair?option1559=1884&purchase_method=1)
 
 ## Software
 
