@@ -8,8 +8,9 @@ Last updated: 30.09.2023, 10:21 PM
 
 ## Hardware
 
-1. **Apple MacBook Pro 16” 2021** — M1 Max, 32 GB RAM, 1 TB SSD
+1. **Apple MacBook Pro 16” 2021** — M2 Max, 64 GB RAM, 1 TB SSD
 2. **Apple iPhone 14 Pro Max** — 256 GB
+4. **Apple AirPods** (3rd generation)
 3. **Logitech MX Master 3S**
 4. [**Autonomous SmartDesk Pro**](https://www.autonomous.ai/standing-desks/smartdesk-2-business?option1=1&option2=8&option16=36&option17=41&purchase_method=1)
 5. [**Autonomous ErgoChair Plus**](https://www.autonomous.ai/office-chairs/kinn-chair?option1559=1884&purchase_method=1)

@@ -24,6 +24,13 @@ export default {
       },
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "partners",
+        path: path.join(__dirname, "src", "components", "Partners", "media"),
+      },
+    },
+    {
       resolve: "gatsby-plugin-feed",
       options: {
         query: `
