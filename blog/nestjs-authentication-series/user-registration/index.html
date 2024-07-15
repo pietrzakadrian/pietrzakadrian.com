@@ -1,0 +1,1033 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.7"/><meta name="description" content="Welcome you to my blog series on user authentication in the NestJS framework. This series is a set of several tutorials that extend the official documentation. If you are programming an enterprise application, you will most likely want to include full user support, i.e. email account confirmation, password reminder capability, etc. This post is the first part in a series and below you can find a list of all the other articles on this topic." data-gatsby-head="true"/><meta name="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta name="twitter:title" content="NestJS Authentication Series 🔐: Part 1 - User registration — Adrian Pietrzak: Software Engineering Blog" data-gatsby-head="true"/><meta name="twitter:description" content="Welcome you to my blog series on user authentication in the NestJS framework. This series is a set of several tutorials that extend the official documentation. If you are programming an enterprise application, you will most likely want to include full user support, i.e. email account confirmation, password reminder capability, etc. This post is the first part in a series and below you can find a list of all the other articles on this topic." data-gatsby-head="true"/><meta name="og:title" content="NestJS Authentication Series 🔐: Part 1 - User registration — Adrian Pietrzak: Software Engineering Blog" data-gatsby-head="true"/><meta name="og:type" content="website" data-gatsby-head="true"/><meta name="og:description" content="Welcome you to my blog series on user authentication in the NestJS framework. This series is a set of several tutorials that extend the official documentation. If you are programming an enterprise application, you will most likely want to include full user support, i.e. email account confirmation, password reminder capability, etc. This post is the first part in a series and below you can find a list of all the other articles on this topic." data-gatsby-head="true"/><meta name="image" content="https://pietrzakadrian.com/static/917b994c0ced5f3b467420f6e0010217/thumbnail.jpeg" data-gatsby-head="true"/><meta name="og:image" content="https://pietrzakadrian.com/static/917b994c0ced5f3b467420f6e0010217/thumbnail.jpeg" data-gatsby-head="true"/><meta name="twitter:image" content="https://pietrzakadrian.com/static/917b994c0ced5f3b467420f6e0010217/thumbnail.jpeg" data-gatsby-head="true"/><meta name="theme-color" content="hsl(31, 92%, 62%)"/><style data-href="/styles.9e3cc3c7ab3c2b310a05.css" data-identity="gatsby-global-css">:after,:before,:root{--color-white:#fff;--color-primary:#2c964a;--color-secondary:#2ea34f;--color-prism-background:#e2e5e9;--color-typographic-base-font:#242933;--color-typographic-link-p-font:#2ea34f;--color-typographic-link-s-font:#2c964a;--color-page-border:#e2e5e9;--color-page-background:#fff;--color-sidebar-border:#e2e5e9;--color-sidebar-border-fade:#fff;--color-contacts-border:#e2e5e9;--color-button-border:#e2e5e9;--color-button-color:#242933;--color-theme-switcher:#3f485a;--color-theme-switcher-hover:#2c964a;--color-tag-silver:#f5f7fa;--color-tag-silver-hover:#e6e6e6;--color-tag-silver-text:#242933;--color-input-border:#e2e5e9}.dark :after,.dark :before,:root.dark{--color-white:#fff;--color-primary:#548fc9;--color-secondary:#4082c4;--color-prism-background:#13161b;--color-typographic-base-font:#fff;--color-typographic-link-p-font:#4082c4;--color-typographic-link-s-font:#548fc9;--color-page-border:#3f485a;--color-page-background:#242933;--color-sidebar-border:#3f485a;--color-sidebar-border-fade:#242933;--color-contacts-border:#3f485a;--color-button-border:#3f485a;--color-button-color:#fff;--color-theme-switcher:#e2e5e9;--color-theme-switcher-hover:#4082c4;--color-tag-silver:#13161b;--color-tag-silver-hover:#3f485a;--color-tag-silver-text:#fff;--color-input-border:#13161b}html{font-size:100}body,html{overscroll-behavior-y:none}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:var(--color-page-background);color:var(--color-typographic-base-font);font-family:Gotham-Book,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;font-size:16px;line-height:1.625;margin:0 0 0 calc(100vw - 100%);text-rendering:optimizelegibility}h1,h2,h3,h4,h5,h6{font-family:Butler,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif}h1{font-size:40px;line-height:52px;margin-bottom:26px;margin-top:104px}h2{font-size:27px;line-height:39px}h2,h3{margin-bottom:13px;margin-top:52px}h3{font-size:22px;line-height:26px}h4{font-size:19.2px;margin-top:39px}h4,h5{line-height:26px;margin-bottom:13px}h5,h6{font-size:16px;margin-top:65px}h6{line-height:26px;margin-bottom:13px}img{max-width:100%}hr,img{border:0;display:block}hr{margin:20px auto;text-align:center;width:100px}hr,hr:before{color:var(--color-typographic-base-font)}hr:before{content:"⦁  ⦁  ⦁";font-size:15px}a{color:var(--color-typographic-link-p-font);text-decoration:none}a:active,a:focus,a:hover{color:var(--color-typographic-link-s-font)}b,strong{font-weight:600}ul{list-style:square;margin-bottom:26px}ul li{margin-bottom:10px;padding:0 5px}p{line-height:26px;margin-bottom:26px}blockquote{box-shadow:inset 3px 0 0 0 var(--color-typographic-base-font);font-style:italic;margin-left:0;padding-left:26px;text-align:left}figure{display:block;height:auto;width:100%}figcaption{color:var(--color-typographic-base-font);font-size:14px;font-style:italic;line-height:19.5px;margin-bottom:0;margin-top:6.5px;text-align:center}button{background-color:transparent}button,input{border-width:0;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;line-height:inherit;padding:0}input:focus{outline:none}@media screen and (min-width:685px){figure.float-left,figure.float-right{max-width:310px;padding:0 26px}.float-right{float:right}.float-left{float:left}}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#f8f8f2;font-family:Fira Code,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:14px;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2e3440}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#636f88}.token.punctuation{color:#81a1c1}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#81a1c1}.token.number{color:#b48ead}.token.boolean{color:#81a1c1}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a3be8c}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#81a1c1}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#88c0d0}.token.keyword{color:#81a1c1}.token.important,.token.regex{color:#ebcb8b}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@font-face{font-display:swap;font-family:Gotham-Book;font-style:normal;font-weight:400;src:local("Gotham-Book"),url(/static/Gotham-Book-207b1f58e0df329a118662e5e3d7500b.eot?#iefix) format("embedded-opentype"),url(/static/Gotham-Book-b39f02e9da64e0412f2091961423b8a3.woff2) format("woff2"),url(/static/Gotham-Book-e872be4db2fd5c800fd8d1b9d0372fc9.woff) format("woff"),url(/static/Gotham-Book-4c2cf6d6bc07b328e8d00fc4b8c70ff9.ttf) format("truetype"),url(/static/Gotham-Book-827308a1a798e3fe077d466f9c1ad461.svg#Gotham-Book) format("svg")}@font-face{font-display:swap;font-family:Butler;font-style:normal;font-weight:400;src:local("Butler"),url(/static/Butler-4a42f1a5ba360aad73c4e68c45a9d538.eot?#iefix) format("embedded-opentype"),url(/static/Butler-99c7b1a6053c62da9427902eaab58690.woff2) format("woff2"),url(/static/Butler-7704cc6b567d92ede0f67d6060f8f5c3.woff) format("woff"),url(/static/Butler-86d94a8a10eba000cff7120d06fe9312.ttf) format("truetype"),url(/static/Butler-0b1942017c6ffdc0d629c82f0a6d2077.svg#Butler) format("svg")}.Button-module--button--b1113,.Button-module--link--ce317{display:flex;justify-content:center}.Button-module--button--b1113{align-items:center;background-color:var(--color-secondary);color:var(--color-white);font-weight:600;padding:10px 15px;text-align:center;transition:background-color .2s ease}.Button-module--button--b1113:hover{background-color:var(--color-primary);color:#fff;cursor:pointer}.Collaboration-module--collaboration--77306 .Collaboration-module--button--1a15e{line-height:1;min-height:50px}.Tags-module--tags--18589{margin-bottom:13px}.Tags-module--tags--18589 .Tags-module--list--82ae6{list-style:none;margin-top:0;padding:0}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015{display:inline-block;margin:6.5px 0;padding:0 6.5px 0 0}@media screen and (min-width:685px){.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015:first-child{margin-left:0;padding-left:0}}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015 .Tags-module--button--421f7{align-items:center;background-color:var(--color-tag-silver);border:none;border-radius:20px;color:var(--color-tag-silver-text);display:flex;font-size:12px;height:26px;line-height:0;padding:0 13px;text-decoration:none;transition:background .1s ease}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015 .Tags-module--button--421f7:hover{background-color:var(--color-tag-silver-hover)}.Layout-module--layout--2c933{margin-left:auto;margin-right:auto;max-width:1070px}.Layout-module--layout--2c933:before{content:"";display:table}.Layout-module--layout--2c933:after{clear:both;content:"";display:table}.Feed-module--feed--a6204 .Feed-module--item--c7a63{margin-bottom:32.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63:last-child{margin-bottom:13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f{font-size:27px;line-height:39px;margin-bottom:3.9px;margin-top:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b{color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:hover{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--description--57348{-webkit-box-orient:vertical;-webkit-line-clamp:4;display:-webkit-box;font-size:16px;line-height:26px;margin-bottom:19.5px;margin-top:0;overflow:hidden}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--bottom--dd480{align-items:center;display:flex}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--bottom--dd480 small{align-items:center;color:#7f8ba4;display:flex;height:26px;white-space:nowrap}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--bottom--dd480 .Feed-module--tags--75a26 div,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--bottom--dd480 .Feed-module--tags--75a26 li,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--bottom--dd480 .Feed-module--tags--75a26 ul{margin:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--time--72864{color:#7f8ba4;font-size:14px;font-weight:600}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--divider--81a18{color:#7f8ba4;margin:0 6.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 small{color:#7f8ba4;font-size:14px;font-weight:600}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b{color:var(--color-secondary);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:hover{color:#4082c4}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e{color:var(--color-primary);font-size:16px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:hover{border-bottom:1px solid var(--color-primary);color:var(--color-primary)}.Page-module--page--24e03{margin-bottom:52px}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:26px 19.5px 0}.Page-module--page--24e03 a{font-weight:600}.Page-module--page--24e03 .Page-module--title--90338{font-size:40px;font-weight:600;line-height:52px;margin-bottom:37.7px;margin-top:0}.Page-module--page--24e03 .Page-module--body--561c4{font-size:16px;line-height:26px;margin:0 0 26px}@media screen and (min-width:685px){.Page-module--page--24e03{width:calc(58.275% - 12.5px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(12n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(12n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:32.5px 19.5px 0}}@media screen and (min-width:960px){.Page-module--page--24e03{width:calc(66.6% - 10px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(3n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(3n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:39px 26px 0}}.Pagination-module--pagination--d61cb{display:flex;margin-top:52px}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b{text-align:left;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:focus,.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8{text-align:right;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:focus,.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Partners-module--partners--ab904 .Partners-module--parent--8e140{grid-column-gap:25px;grid-row-gap:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr}.Partners-module--partners--ab904 .Partners-module--parent--8e140 .Partners-module--item--02c3b{align-items:center;display:flex;margin-bottom:0}.Related-module--related--75a7f .Related-module--header--4fb3a{margin-top:0}.Meta-module--meta--dae0a{color:#7f8ba4;display:flex;font-size:14px;font-weight:600}.Meta-module--meta--dae0a p{margin:0}.Meta-module--meta--dae0a span{margin:0 6px}.ThemeSwitcher-module--themeSwitcher--8a77f{--color:var(--color-theme-switcher)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b{align-items:center;background:transparent;border:0;cursor:pointer;display:flex;justify-content:center;outline:0}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b svg{stroke:var(--color);pointer-events:none;transition:stroke .4s}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b:hover{--color:var(--color-theme-switcher-hover)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--moon--10537{stroke-dasharray:0 1px;opacity:0;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--sun--2163a{stroke-dasharray:1px 1px;opacity:1;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--moon--10537{stroke-dasharray:1px 1px;opacity:1}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--sun--2163a{stroke-dasharray:0 1px;opacity:0}.Author-module--author--1c58d{align-items:center;display:flex;justify-content:space-between;line-height:26px;margin-bottom:39px;margin-top:13px;max-width:640px}.Author-module--author--1c58d .Author-module--photo--b037c{background-clip:padding-box;border-radius:50%;display:inline-block;height:50px;margin-bottom:0;margin-right:13px;width:50px}.Author-module--author--1c58d .Author-module--photo--b037c img{border-radius:50%}.Author-module--author--1c58d p,.Author-module--author--1c58d span,.Author-module--author--1c58d strong{line-height:1}.Author-module--author--1c58d .Author-module--information--20ba9{align-items:center;display:flex}.Author-module--author--1c58d .Author-module--information--20ba9 .Author-module--wrapper--5b181{display:flex;flex-direction:column;gap:5px}@media screen and (min-width:685px){.Author-module--author--1c58d{margin-left:auto;margin-right:auto}}.Content-module--content--80d58{margin:0 auto;max-width:945px;padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:32px;font-weight:600;line-height:42.9px;margin:0 auto;max-width:640px;text-align:left}.Content-module--content--80d58 h1{font-size:28.8px;margin-top:26px}.Content-module--content--80d58 h2{font-size:24px}.Content-module--content--80d58 .Content-module--body--726c2 figure{margin-bottom:26px}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote{font-style:italic;margin-top:0;padding:26px 0}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote p{font-size:26.9072px;line-height:39px;margin-bottom:26px;margin-top:0;max-width:640px}.Content-module--content--80d58 .Content-module--body--726c2 a{text-decoration:underline}.Content-module--content--80d58 .Content-module--body--726c2 *{margin-left:auto;margin-right:auto;max-width:640px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{visibility:hidden}.Content-module--content--80d58 .Content-module--body--726c2 h2>a>svg{fill:var(--color-typographic-base-font)}.Content-module--content--80d58 .Content-module--body--726c2 img{max-width:100%}@media screen and (min-width:960px){.Content-module--content--80d58{padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:48px;line-height:58.5px;margin-bottom:0;margin-top:0}.Content-module--content--80d58 .Content-module--body--726c2,.Content-module--content--80d58 .Content-module--body--726c2 p{font-size:18px;line-height:29.25px;margin-bottom:29.25px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{padding-right:13px;visibility:unset}}.Copyright-module--copyright--766ee{color:#7f8ba4;font-size:14px}.Post-module--post--3a994 .Post-module--content--3c6e5{margin:0 auto}.Post-module--post--3a994 .Post-module--footer--f8705{margin:0;max-width:640px;padding:0}.Post-module--post--3a994 .Post-module--comments--d3b99{margin:0 auto;max-width:640px;padding:0!important}@media screen and (min-width:960px){.Post-module--post--3a994 .Post-module--footer--f8705{padding:0}}.Author-module--author--cbd31 .Author-module--photo--9787b{background-clip:padding-box;border-radius:50%;display:inline-block;height:75px;margin-bottom:0;width:75px}.Author-module--author--cbd31 .Author-module--photo--9787b img{border-radius:50%}.Author-module--author--cbd31 .Author-module--title--cf7e5{font-family:Gotham-Book,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;font-size:18px;font-weight:600;line-height:29.25px;margin:0}.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:focus,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:hover{color:var(--color-typographic-base-font)}.Author-module--author--cbd31 .Author-module--subtitle--86ec5{color:#7f8ba4;line-height:26px;margin-bottom:26px}.Author-module--author--cbd31 .Author-module--titleContainer--4f576{align-items:center;display:flex;justify-content:space-between;margin:13px 0}.Icon-module--icon--1d7da{fill:currentcolor;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;speak:none;stroke:currentcolor;stroke-width:0;display:inline-block;font-style:normal;font-variant:normal;font-weight:400;height:1.5em;line-height:1em;text-align:center;text-transform:none;width:1.5em}.Contacts-module--contacts--09178{margin-bottom:26px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b{display:flex;flex-flow:row wrap;flex-grow:0;flex-shrink:0;list-style:none;margin:0;max-width:150px;padding:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0{align-content:center;align-items:center;display:flex;height:40px;justify-content:center;line-height:40px;margin:9.1px;padding:0;text-align:center}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0:nth-child(3n+1){margin-left:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0{border:0;color:var(--color-typographic-base-font);cursor:pointer;display:flex;transition:color .2s ease}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:focus,.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:hover{color:var(--color-typographic-link-p-font)}.Menu-module--menu--113a9{margin-bottom:26px}.Menu-module--menu--113a9 .Menu-module--list--e1ae3{list-style:none;margin:0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679{margin:13px 0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02{border:0;color:var(--color-typographic-base-font);font-size:16px;font-weight:400}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:focus,.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:hover{border-bottom:1px solid var(--color-primary);color:var(--color-primary)}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02.Menu-module--active--6cb74{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font);font-weight:600}.Sidebar-module--sidebar--1bfa1{position:-webkit-sticky;position:sticky;width:100%}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:26px 19.5px 0;position:relative}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{background:var(--color-sidebar-border);background:linear-gradient(to bottom,var(--color-sidebar-border) 0,var(--color-sidebar-border) 48%,var(--color-sidebar-border-fade) 100%)}@media screen and (min-width:685px){.Sidebar-module--sidebar--1bfa1{top:0;width:calc(41.625% - 17.5px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:32.5px 19.5px 0}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{bottom:0;content:"";height:540px;position:absolute;right:-10px;top:30px;width:1px}}@media screen and (min-width:960px){.Sidebar-module--sidebar--1bfa1{width:calc(33.3% - 20px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:39px}}</style><title data-gatsby-head="true">NestJS Authentication Series 🔐: Part 1 - User registration — Adrian Pietrzak: Software Engineering Blog</title><link rel="alternate" type="application/rss+xml" title="Adrian Pietrzak" href="/blog/rss.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-205649365-1"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-205649365-1', {"send_page_view":false});
+      }
+      </script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=44654e347188ff02bbe25c28926e9968" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=44654e347188ff02bbe25c28926e9968"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=44654e347188ff02bbe25c28926e9968"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><script>
+          void function() {
+            var cachedMode;
+
+            try {
+              var preferredTheme = JSON.parse(localStorage.getItem('diesel:theme-atom'));
+
+              if (preferredTheme && preferredTheme.mode) {
+                cachedMode = preferredTheme.mode;
+              }
+            } catch (err) { }
+
+            function setTheme(newTheme) {
+              document.documentElement.className = newTheme;
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            setTheme(cachedMode || (darkQuery.matches ? 'dark' : 'light'));
+          }()
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--2c933"><div class="Sidebar-module--sidebar--1bfa1"><div class="Sidebar-module--inner--344d0"><div class="Author-module--author--cbd31"><a href="/blog"><div data-gatsby-image-wrapper="" class="gatsby-image-wrapper gatsby-image-wrapper-constrained Author-module--photo--9787b"><div style="max-width:960px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;960&#x27; width=&#x27;960&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#f8f8f8;position:absolute;top:0;left:0;bottom:0;right:0"></div><picture><source type="image/avif" data-srcset="/static/44654e347188ff02bbe25c28926e9968/7234b/photo.avif 240w,/static/44654e347188ff02bbe25c28926e9968/0f4b9/photo.avif 480w,/static/44654e347188ff02bbe25c28926e9968/c42ce/photo.avif 960w" sizes="(min-width: 960px) 960px, 100vw"/><source type="image/webp" data-srcset="/static/44654e347188ff02bbe25c28926e9968/8d565/photo.webp 240w,/static/44654e347188ff02bbe25c28926e9968/21b1a/photo.webp 480w,/static/44654e347188ff02bbe25c28926e9968/d6f60/photo.webp 960w" sizes="(min-width: 960px) 960px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 960px) 960px, 100vw" decoding="async" loading="lazy" data-src="/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png" data-srcset="/static/44654e347188ff02bbe25c28926e9968/87351/photo.png 240w,/static/44654e347188ff02bbe25c28926e9968/ec333/photo.png 480w,/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png 960w" alt="Adrian Pietrzak"/></picture><noscript><picture><source type="image/avif" srcSet="/static/44654e347188ff02bbe25c28926e9968/7234b/photo.avif 240w,/static/44654e347188ff02bbe25c28926e9968/0f4b9/photo.avif 480w,/static/44654e347188ff02bbe25c28926e9968/c42ce/photo.avif 960w" sizes="(min-width: 960px) 960px, 100vw"/><source type="image/webp" srcSet="/static/44654e347188ff02bbe25c28926e9968/8d565/photo.webp 240w,/static/44654e347188ff02bbe25c28926e9968/21b1a/photo.webp 480w,/static/44654e347188ff02bbe25c28926e9968/d6f60/photo.webp 960w" sizes="(min-width: 960px) 960px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 960px) 960px, 100vw" decoding="async" loading="lazy" src="/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png" srcSet="/static/44654e347188ff02bbe25c28926e9968/87351/photo.png 240w,/static/44654e347188ff02bbe25c28926e9968/ec333/photo.png 480w,/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png 960w" alt="Adrian Pietrzak"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div></a><div class="Author-module--titleContainer--4f576"><h2 class="Author-module--title--cf7e5"><a class="Author-module--link--09c17" href="/blog">Adrian Pietrzak</a></h2></div><p class="Author-module--subtitle--86ec5">Software Engineer from Poland. Mostly Node.js, React and React Native.</p></div><nav class="Menu-module--menu--113a9"><ul class="Menu-module--list--e1ae3"><li class="Menu-module--item--8b679"><a class="Menu-module--link--a6f02" href="/blog">Articles</a></li><li class="Menu-module--item--8b679"><a class="Menu-module--link--a6f02" href="/portrait">Portrait</a></li><li class="Menu-module--item--8b679"><a class="Menu-module--link--a6f02" href="/tools">Tools</a></li><li class="Menu-module--item--8b679"><a class="Menu-module--link--a6f02" href="/certifications">Certifications</a></li><li class="Menu-module--item--8b679"><a class="Menu-module--link--a6f02" href="/collaboration">Collaboration ✨</a></li><li class="Menu-module--item--8b679"><a class="Menu-module--link--a6f02" href="/privacy-policy">Privacy policy</a></li></ul></nav><div class="Contacts-module--contacts--09178"><ul class="Contacts-module--list--9670b"><li class="Contacts-module--item--f9cb0"><span class="Contacts-module--link--de1e0"><svg class="Icon-module--icon--1d7da" viewBox="0 0 29 30"><title>email</title><path d="M26 23.5v-12c-0.328 0.375-0.688 0.719-1.078 1.031-2.234 1.719-4.484 3.469-6.656 5.281-1.172 0.984-2.625 2.188-4.25 2.188h-0.031c-1.625 0-3.078-1.203-4.25-2.188-2.172-1.813-4.422-3.563-6.656-5.281-0.391-0.313-0.75-0.656-1.078-1.031v12c0 0.266 0.234 0.5 0.5 0.5h23c0.266 0 0.5-0.234 0.5-0.5zM26 7.078c0-0.391 0.094-1.078-0.5-1.078h-23c-0.266 0-0.5 0.234-0.5 0.5 0 1.781 0.891 3.328 2.297 4.438 2.094 1.641 4.188 3.297 6.266 4.953 0.828 0.672 2.328 2.109 3.422 2.109h0.031c1.094 0 2.594-1.437 3.422-2.109 2.078-1.656 4.172-3.313 6.266-4.953 1.016-0.797 2.297-2.531 2.297-3.859zM28 6.5v17c0 1.375-1.125 2.5-2.5 2.5h-23c-1.375 0-2.5-1.125-2.5-2.5v-17c0-1.375 1.125-2.5 2.5-2.5h23c1.375 0 2.5 1.125 2.5 2.5z"></path></svg></span></li><li class="Contacts-module--item--f9cb0"><a class="Contacts-module--link--de1e0" href="https://github.com/pietrzakadrian" target="_blank" rel="noopener noreferrer"><svg class="Icon-module--icon--1d7da" viewBox="0 0 24 24"><title>github</title><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a></li><li class="Contacts-module--item--f9cb0"><a class="Contacts-module--link--de1e0" href="https://www.twitter.com/pietrzakadrian" target="_blank" rel="noopener noreferrer"><svg class="Icon-module--icon--1d7da" viewBox="0 0 24 24"><title>twitter</title><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a></li></ul></div></div></div><div class="Page-module--page--24e03"><div class="Page-module--inner--4b31d"><div class="Page-module--body--561c4"><div class="Post-module--post--3a994"><div class="Post-module--content--3c6e5"><div class="Content-module--content--80d58"><h1 class="Content-module--title--09504">NestJS Authentication Series 🔐: Part 1 - User registration</h1><div class="Author-module--author--1c58d"><div class="Author-module--information--20ba9"><div data-gatsby-image-wrapper="" class="gatsby-image-wrapper gatsby-image-wrapper-constrained Author-module--photo--b037c"><div style="max-width:960px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;960&#x27; width=&#x27;960&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><div aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear;background-color:#f8f8f8;position:absolute;top:0;left:0;bottom:0;right:0"></div><picture><source type="image/avif" data-srcset="/static/44654e347188ff02bbe25c28926e9968/7234b/photo.avif 240w,/static/44654e347188ff02bbe25c28926e9968/0f4b9/photo.avif 480w,/static/44654e347188ff02bbe25c28926e9968/c42ce/photo.avif 960w" sizes="(min-width: 960px) 960px, 100vw"/><source type="image/webp" data-srcset="/static/44654e347188ff02bbe25c28926e9968/8d565/photo.webp 240w,/static/44654e347188ff02bbe25c28926e9968/21b1a/photo.webp 480w,/static/44654e347188ff02bbe25c28926e9968/d6f60/photo.webp 960w" sizes="(min-width: 960px) 960px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 960px) 960px, 100vw" decoding="async" loading="lazy" data-src="/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png" data-srcset="/static/44654e347188ff02bbe25c28926e9968/87351/photo.png 240w,/static/44654e347188ff02bbe25c28926e9968/ec333/photo.png 480w,/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png 960w" alt="Adrian Pietrzak"/></picture><noscript><picture><source type="image/avif" srcSet="/static/44654e347188ff02bbe25c28926e9968/7234b/photo.avif 240w,/static/44654e347188ff02bbe25c28926e9968/0f4b9/photo.avif 480w,/static/44654e347188ff02bbe25c28926e9968/c42ce/photo.avif 960w" sizes="(min-width: 960px) 960px, 100vw"/><source type="image/webp" srcSet="/static/44654e347188ff02bbe25c28926e9968/8d565/photo.webp 240w,/static/44654e347188ff02bbe25c28926e9968/21b1a/photo.webp 480w,/static/44654e347188ff02bbe25c28926e9968/d6f60/photo.webp 960w" sizes="(min-width: 960px) 960px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 960px) 960px, 100vw" decoding="async" loading="lazy" src="/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png" srcSet="/static/44654e347188ff02bbe25c28926e9968/87351/photo.png 240w,/static/44654e347188ff02bbe25c28926e9968/ec333/photo.png 480w,/static/44654e347188ff02bbe25c28926e9968/3f279/photo.png 960w" alt="Adrian Pietrzak"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><div class="Author-module--wrapper--5b181"><strong>Adrian Pietrzak</strong><div class="Meta-module--meta--dae0a"><p>Feb 13, 2022</p><span>—</span><p>21<!-- --> min read</p></div></div></div></div><div class="Content-module--body--726c2"><p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/917b994c0ced5f3b467420f6e0010217/e5166/thumbnail.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBv/EABQBAQAAAAAAAAAAAAAAAAAAAAL/2gAMAwEAAhADEAAAAbMyrkEGEGP/xAAcEAABAwUAAAAAAAAAAAAAAAACARIyAAMEESH/2gAIAQEAAQUC2VZN5xlI+AKq45f/xAAXEQADAQAAAAAAAAAAAAAAAAAAAQIx/9oACAEDAQE/AbwSP//EABURAQEAAAAAAAAAAAAAAAAAAAIQ/9oACAECAQE/ATP/xAAZEAEAAgMAAAAAAAAAAAAAAAABEDEAE1H/2gAIAQEABj8CzWUXCnJ//8QAGxAAAwACAwAAAAAAAAAAAAAAAAERITFBgdH/2gAIAQEAAT8hS9q9FP1RKZHDjTQyFy9mw//aAAwDAQACAAMAAAAQa+//xAAXEQADAQAAAAAAAAAAAAAAAAAAASER/9oACAEDAQE/ELwiCP/EABcRAAMBAAAAAAAAAAAAAAAAAAABIRH/2gAIAQIBAT8QW6N0/8QAHRABAAICAgMAAAAAAAAAAAAAAQBRESExsUGBwf/aAAgBAQABPxDmHK18hotAq6+u4OHGdEXJTKkJhE1dnzEudrqf/9k='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/917b994c0ced5f3b467420f6e0010217/8ac56/thumbnail.webp 240w,
+/static/917b994c0ced5f3b467420f6e0010217/d3be9/thumbnail.webp 480w,
+/static/917b994c0ced5f3b467420f6e0010217/e46b2/thumbnail.webp 960w,
+/static/917b994c0ced5f3b467420f6e0010217/92f8c/thumbnail.webp 1200w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/917b994c0ced5f3b467420f6e0010217/09b79/thumbnail.jpg 240w,
+/static/917b994c0ced5f3b467420f6e0010217/7cc5e/thumbnail.jpg 480w,
+/static/917b994c0ced5f3b467420f6e0010217/6a068/thumbnail.jpg 960w,
+/static/917b994c0ced5f3b467420f6e0010217/e5166/thumbnail.jpg 1200w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/jpeg"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/917b994c0ced5f3b467420f6e0010217/6a068/thumbnail.jpg"
+            alt="Thumbnail"
+            title="Thumbnail"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Welcome you to my blog series on user authentication in the NestJS framework. This series is a set of several tutorials that extend the official documentation.</p>
+<p>If you are programming an enterprise application, you will most likely want to include full user support, i.e. email account confirmation, password reminder capability, etc.</p>
+<p>This post is the first part in a series and below you can find a list of all the other articles on this topic.</p>
+<ul>
+<li><a href="/blog/nestjs-authentication-series/user-registration">Part 1: User registration</a></li>
+<li>Part 2: Confirmation of user registration by email</li>
+<li>Part 3: User authentication using JWT and cookies</li>
+<li>Part 4: Implementation refresh JWT in cookies</li>
+<li>Part 5: User logout</li>
+<li>Part 6: Forgot / Reset password</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: We’ll be getting started programming on the Nest.js prepared official typescript starter, which you can find at <a href="https://github.com/nestjs/typescript-starter" target="_blank" rel="nofollow noopener noreferrer">this link</a>. Also remember that all the source code from this article is available on my <a href="https://github.com/pietrzakadrian" target="_blank" rel="nofollow noopener noreferrer">GitHub profile</a>.</p>
+</blockquote>
+<hr>
+<h1 id="technology-stack" style="position:relative;"><a href="#technology-stack" aria-label="technology stack permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Technology stack</h1>
+<p>The application uses the following technology stack:</p>
+<ul>
+<li><strong>Node.js</strong> &#x26; <strong>NestJS</strong> as the server runtime platform,</li>
+<li><strong>PostgreSQL</strong> relational database,</li>
+<li>Standard <strong>REST API</strong> protocol,</li>
+<li>One of the most popular ORMs: <strong>TypeORM</strong>.</li>
+</ul>
+<hr>
+<h1 id="software-architecture" style="position:relative;"><a href="#software-architecture" aria-label="software architecture permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Software architecture</h1>
+<p>We will use my own software architecture, because in my opinion it is better than the one presented in the official framework template.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">.
+├── node_modules
+├── src
+│   ├── app
+│   │   ├── constants
+│   │   │   ├── app.constant.ts
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   ├── authentication
+│   │   ├── controllers
+│   │   │   ├── authentication.controller.ts
+│   │   │   └── index.ts
+│   │   ├── dtos
+│   │   │   ├── authentication.dto.ts
+│   │   │   ├── create-authentication.dto.ts
+│   │   │   ├── index.ts
+│   │   │   └── registration.dto.ts
+│   │   ├── entities
+│   │   │   ├── authentication.entity.ts
+│   │   │   └── index.ts
+│   │   ├── exceptions
+│   │   │   ├── index.ts
+│   │   │   └── user-already-exist.exception.ts
+│   │   ├── providers
+│   │   │   ├── authentication.provider.ts
+│   │   │   └── index.ts
+│   │   ├── repositories
+│   │   │   ├── authentication.repository.ts
+│   │   │   └── index.ts
+│   │   ├── services
+│   │   │   ├── authentication.service.ts
+│   │   │   └── index.ts
+│   │   ├── subscribers
+│   │   │   ├── authentication.subscriber.ts
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   ├── common
+│   │   ├── dtos
+│   │   │   ├── abstract.dto.ts
+│   │   │   └── index.ts
+│   │   └── entities
+│   │       ├── abstract.entity.ts
+│   │       └── index.ts
+│   ├── database
+│   │   ├── constraints
+│   │   │   ├── errors.constraint.ts
+│   │   │   └── index.ts
+│   │   ├── strategies
+│   │   │   ├── index.ts
+│   │   │   └── snake-naming.strategy.ts
+│   │   └── index.ts
+│   ├── user
+│   │   ├── dtos
+│   │   │   ├── create-user.dto.ts
+│   │   │   ├── index.ts
+│   │   │   └── user.dto.ts
+│   │   ├── entities
+│   │   │   ├── index.ts
+│   │   │   └── user.entity.ts
+│   │   ├── repositories
+│   │   │   ├── index.ts
+│   │   │   └── user.repository.ts
+│   │   ├── services
+│   │   │   ├── index.ts
+│   │   │   └── user.service.ts
+│   │   └── index.ts
+│   ├── util
+│   │   ├── index.ts
+│   │   └── setup-swagger.util.ts
+│   └── main.ts
+├── .env
+├── .eslintrc.js
+├── .gitignore
+├── .prettierrc
+├── nest-cli.json
+├── package.json
+├── README.md
+├── tsconfig.build.json
+├── tsconfig.json
+└── yarn.lock</code></pre></div>
+<hr>
+<h1 id="software-development" style="position:relative;"><a href="#software-development" aria-label="software development permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Software development</h1>
+<h2 id="1-install-required-npm-dependencies" style="position:relative;"><a href="#1-install-required-npm-dependencies" aria-label="1 install required npm dependencies permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Install required npm dependencies</h2>
+<p>We will need some external packages that we will use to program the authorization.</p>
+<blockquote>
+<p><strong>Note</strong>: I use package manager yarn instead of npm by default, so you can remove your <strong>package-lock.json</strong> file if you chose the typescript starter.</p>
+</blockquote>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">yarn add pg @hapi/joi @nestjs/config @nestjs/typeorm typeorm class-transformer class-validator bcrypt</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">yarn add @types/bcrypt @types/hapi__joi --dev</code></pre></div>
+<h2 id="2-define-the-environment-variables" style="position:relative;"><a href="#2-define-the-environment-variables" aria-label="2 define the environment variables permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Define the environment variables</h2>
+<p>Your application will use environment variables that will remain completely private and cannot be stored in the repository. We also installed the hapi library, which will always check that the data is in the correct format before compiling the code.</p>
+<p>We also installed the <strong>@hapi/joi</strong> library, which will always check that the data is in the correct format before compiling the code.</p>
+<h3 id="21-create-an-env-file" style="position:relative;"><a href="#21-create-an-env-file" aria-label="21 create an env file permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1. Create an .env file</h3>
+<p>Create an <strong>.env</strong> file in the root directory:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># Application Settings
+PORT=9000
+NODE_ENV=development
+
+# Database Settings
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=pietrzakadrian
+POSTGRES_PASSWORD=
+POSTGRES_DB=nestjs-authentication-full</code></pre></div>
+<h3 id="22-define-an-environment-variable" style="position:relative;"><a href="#22-define-an-environment-variable" aria-label="22 define an environment variable permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.2. Define an environment variable</h3>
+<p>This will keep our code more readable. In the <strong>src/app/constants</strong> directory I create a new file <strong>app.constant.ts</strong>:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">enum</span> <span class="token constant">NODE_ENV</span> <span class="token punctuation">{</span>
+  <span class="token constant">DEVELOPMENT</span> <span class="token operator">=</span> <span class="token string">"development"</span><span class="token punctuation">,</span>
+  <span class="token constant">PRODUCTION</span> <span class="token operator">=</span> <span class="token string">"production"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3 id="23-validation-of-environmental-variables" style="position:relative;"><a href="#23-validation-of-environmental-variables" aria-label="23 validation of environmental variables permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.3. Validation of environmental variables</h3>
+<p>Now we can define a validator in the <strong>index.ts</strong> file of the <strong>app</strong> module. The implementation looks like this:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Joi <span class="token keyword">from</span> <span class="token string">"@hapi/joi"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ConfigModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/config"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">NODE_ENV</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./constants"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    ConfigModule<span class="token punctuation">.</span><span class="token function">forRoot</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      validationSchema<span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token constant">PORT</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token constant">NODE_ENV</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          <span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          <span class="token punctuation">.</span><span class="token function">valid</span><span class="token punctuation">(</span><span class="token constant">NODE_ENV</span><span class="token punctuation">.</span><span class="token constant">DEVELOPMENT</span><span class="token punctuation">,</span> <span class="token constant">NODE_ENV</span><span class="token punctuation">.</span><span class="token constant">PRODUCTION</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token constant">POSTGRES_HOST</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token constant">POSTGRES_PORT</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token constant">POSTGRES_USER</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token constant">POSTGRES_PASSWORD</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">allow</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token constant">POSTGRES_DB</span><span class="token operator">:</span> Joi<span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">required</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: My database password is an empty string, therefore I allow it to be left empty.</p>
+</blockquote>
+<p>We can also use them elsewhere in the application, i.e. in the <strong>main.ts</strong> file:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ConfigService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/config"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> NestFactory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/core"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./app"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">await</span> NestFactory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>AppModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> configService <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>ConfigService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token constant">PORT</span> <span class="token operator">=</span> <span class="token operator">+</span>configService<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">get</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token string">"PORT"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token constant">PORT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>Environment variables have been implemented. Brilliant! 👊</p>
+<h2 id="3-create-database-module" style="position:relative;"><a href="#3-create-database-module" aria-label="3 create database module permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Create database module</h2>
+<p>It’s time to program the database module. This module, as the name suggests, is responsible for communicating with postgres.</p>
+<p>We will include the snake_naming strategy and add a constraint for the unique value.</p>
+<h3 id="31-error-code-for-unique-values" style="position:relative;"><a href="#31-error-code-for-unique-values" aria-label="31 error code for unique values permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1. Error code for unique values</h3>
+<p>In the <strong>src/database/constraints</strong> directory, create the <strong>errors.constraint.ts</strong> file:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">enum</span> PostgresErrorCode <span class="token punctuation">{</span>
+  UniqueViolation <span class="token operator">=</span> <span class="token string">"23505"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>This is needed to catch an error in the controller if the specified email address repeats.</p>
+<h3 id="32-snake-naming-strategy" style="position:relative;"><a href="#32-snake-naming-strategy" aria-label="32 snake naming strategy permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2. Snake Naming Strategy</h3>
+<p>Defined in the typescript model, a field such as <strong>firstName</strong> will be stored as <strong>first_name</strong> in the db. This will improve code readability and keep it in <strong>titleCase</strong> format.</p>
+<p>Create <strong>snake-naming.strategy.ts</strong> in <strong>src/database/strategies</strong>:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> DefaultNamingStrategy<span class="token punctuation">,</span> NamingStrategyInterface <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> snakeCase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm/util/StringUtils"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">SnakeNamingStrategy</span>
+  <span class="token keyword">extends</span> <span class="token class-name">DefaultNamingStrategy</span>
+  <span class="token keyword">implements</span> <span class="token class-name">NamingStrategyInterface</span>
+<span class="token punctuation">{</span>
+  <span class="token function">tableName</span><span class="token punctuation">(</span>className<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> customName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> customName <span class="token operator">?</span> customName <span class="token operator">:</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span>className<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">columnName</span><span class="token punctuation">(</span>
+    propertyName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    customName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    embeddedPrefixes<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token function">snakeCase</span><span class="token punctuation">(</span>embeddedPrefixes<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"_"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+      <span class="token punctuation">(</span>customName <span class="token operator">?</span> customName <span class="token operator">:</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span>propertyName<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">relationName</span><span class="token punctuation">(</span>propertyName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span>propertyName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">joinColumnName</span><span class="token punctuation">(</span>relationName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span>relationName <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> referencedColumnName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">joinTableName</span><span class="token punctuation">(</span>
+    firstTableName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    secondTableName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    firstPropertyName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    _secondPropertyName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span>
+      firstTableName <span class="token operator">+</span>
+        <span class="token string">"_"</span> <span class="token operator">+</span>
+        firstPropertyName<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.</span><span class="token regex-delimiter">/</span><span class="token regex-flags">gi</span></span><span class="token punctuation">,</span> <span class="token string">"_"</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+        <span class="token string">"_"</span> <span class="token operator">+</span>
+        secondTableName<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">joinTableColumnName</span><span class="token punctuation">(</span>
+    tableName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    propertyName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    columnName<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span>
+      tableName <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> <span class="token punctuation">(</span>columnName <span class="token operator">?</span> columnName <span class="token operator">:</span> propertyName<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">classTableInheritanceParentColumnName</span><span class="token punctuation">(</span>
+    parentTableName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    parentTableIdPropertyName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">snakeCase</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>parentTableName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">_</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>parentTableIdPropertyName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3 id="33-typeorm-configuration" style="position:relative;"><a href="#33-typeorm-configuration" aria-label="33 typeorm configuration permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.3. TypeORM configuration</h3>
+<p>Finally, create a base class by importing the required dependencies:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ConfigModule<span class="token punctuation">,</span> ConfigService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/config"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TypeOrmModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">NODE_ENV</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/app/constants"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SnakeNamingStrategy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./strategies"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    TypeOrmModule<span class="token punctuation">.</span><span class="token function">forRootAsync</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      imports<span class="token operator">:</span> <span class="token punctuation">[</span>ConfigModule<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      inject<span class="token operator">:</span> <span class="token punctuation">[</span>ConfigService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">useFactory</span><span class="token operator">:</span> <span class="token punctuation">(</span>configService<span class="token operator">:</span> ConfigService<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        type<span class="token operator">:</span> <span class="token string">"postgres"</span><span class="token punctuation">,</span>
+        host<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"POSTGRES_HOST"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        port<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"POSTGRES_PORT"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        username<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"POSTGRES_USER"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        password<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"POSTGRES_PASSWORD"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        database<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"POSTGRES_DB"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        entities<span class="token operator">:</span> <span class="token punctuation">[</span>__dirname <span class="token operator">+</span> <span class="token string">"/../**/*.entity{.ts,.js}"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        namingStrategy<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">SnakeNamingStrategy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        synchronize<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"NODE_ENV"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token constant">NODE_ENV</span><span class="token punctuation">.</span><span class="token constant">DEVELOPMENT</span><span class="token punctuation">,</span>
+        logging<span class="token operator">:</span> configService<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"NODE_ENV"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token constant">NODE_ENV</span><span class="token punctuation">.</span><span class="token constant">DEVELOPMENT</span><span class="token punctuation">,</span>
+        extra<span class="token operator">:</span> <span class="token punctuation">{</span> charset<span class="token operator">:</span> <span class="token string">"utf8mb4_unicode_ci"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DatabaseModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: Define charset utf8mb4 if you want to be able to store emoji in database.</p>
+</blockquote>
+<p>To make your code complicated, import this module to the main application module.</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { DatabaseModule } from 'src/database';
+</span>
+@Module({
+<span class="token unchanged"><span class="token prefix unchanged"> </span> imports: [
+<span class="token prefix unchanged"> </span>   ConfigModule.forRoot({
+<span class="token prefix unchanged"> </span>     ...
+<span class="token prefix unchanged"> </span>   }),
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>   DatabaseModule,
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> ],
+</span>})
+export class AppModule {}</code></pre></div>
+<p>That’s right, now the database is used in our application. Getting closer to completion! 💨</p>
+<h2 id="4-common-files" style="position:relative;"><a href="#4-common-files" aria-label="4 common files permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Common files</h2>
+<p>Our data models will contain common parts such as <strong>id</strong> column, <strong>uuid</strong>, <strong>created_at</strong> etc. This is an ideal opportunity to create an abstract class from which the other models will inherit.</p>
+<h3 id="41-create-an-abstract-entity" style="position:relative;"><a href="#41-create-an-abstract-entity" aria-label="41 create an abstract entity permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.1. Create an abstract entity</h3>
+<p>Create a new file in the <strong>src/common/entities</strong> directory called <strong>abstract.entity.ts</strong>.</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Exclude <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"class-transformer"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  Column<span class="token punctuation">,</span>
+  CreateDateColumn<span class="token punctuation">,</span>
+  Generated<span class="token punctuation">,</span>
+  PrimaryGeneratedColumn<span class="token punctuation">,</span>
+  UpdateDateColumn<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractEntity</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">PrimaryGeneratedColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Exclude</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Generated</span></span><span class="token punctuation">(</span><span class="token string">"uuid"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">CreateDateColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Exclude</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> createdAt<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">UpdateDateColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Exclude</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> updatedAt<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>We use the <strong>@Exclude()</strong> decorator to not return sensitive data in the controllers response. For this to work, we need to make some changes to the <strong>main.ts</strong> application file:</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+</span>
+async function bootstrap() {
+<span class="token unchanged"><span class="token prefix unchanged"> </span> const app = await NestFactory.create(AppModule);
+<span class="token prefix unchanged"> </span> const reflector = app.get(Reflector);
+<span class="token prefix unchanged"> </span> const configService = app.get(ConfigService);
+<span class="token prefix unchanged"> </span> const PORT = +configService.get&lt;number>('PORT');
+</span>
+<span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> app.useGlobalPipes(new ValidationPipe({ transform: true }));
+<span class="token prefix inserted">+</span> app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
+</span>
+<span class="token unchanged"><span class="token prefix unchanged"> </span> await app.listen(PORT);
+</span>}
+
+void bootstrap();</code></pre></div>
+<p>Now everything is ok. Validation will be tested at the end of this article.</p>
+<h2 id="5-create-user-module" style="position:relative;"><a href="#5-create-user-module" aria-label="5 create user module permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. Create user module</h2>
+<p>We will be registering a new user, so it would be a good idea to create a module responsible for processing user data. Sensitive data such as email, password, tokens will be stored in another entity and will be bound by a one to one relationship.</p>
+<blockquote>
+<p><strong>Note</strong>: This will keep the database more organized, but when creating a new user we will have to use a transaction.</p>
+</blockquote>
+<h3 id="51-create-a-model" style="position:relative;"><a href="#51-create-a-model" aria-label="51 create a model permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.1 Create a model</h3>
+<p>First, define the data model. As I mentioned earlier, authorization information such as email or password will be stored in another table. Therefore, we will make a one to one relationship.</p>
+<p>So in the <strong>src/users/entities</strong> directory we create a file called <strong>user.entity.ts</strong>:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/authentication/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AbstractEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/common/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Column<span class="token punctuation">,</span> Entity<span class="token punctuation">,</span> JoinColumn<span class="token punctuation">,</span> OneToOne<span class="token punctuation">,</span> Index <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Entity</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">"users"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserEntity</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractEntity</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> firstName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">OneToOne</span></span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> AuthenticationEntity<span class="token punctuation">,</span>
+    <span class="token punctuation">(</span>authentication<span class="token operator">:</span> AuthenticationEntity<span class="token punctuation">)</span> <span class="token operator">=></span> authentication<span class="token punctuation">.</span>user<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> eager<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> onDelete<span class="token operator">:</span> <span class="token string">"CASCADE"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">JoinColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Index</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> authentication<span class="token operator">:</span> AuthenticationEntity<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p>❗️ <strong>Note</strong>: At this point, <strong>Authentication Entity</strong> is not yet defined. We’ll do that in a moment when we get to the authentication section.</p>
+</blockquote>
+<p>This is also what a repository is made for, so let’s make it similar to what we just did. In the <strong>repositories</strong> directory, let’s create the file <strong>user.repository.ts</strong>:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Repository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> EntityRepository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm/decorator/EntityRepository"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../entities"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">EntityRepository</span></span><span class="token punctuation">(</span>UserEntity<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserRepository</span> <span class="token keyword">extends</span> <span class="token class-name">Repository<span class="token operator">&lt;</span>UserEntity<span class="token operator">></span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<p>Let’s also prepare a <strong>D</strong>ata <strong>T</strong>ransform <strong>O</strong>bject class that will contain validations. You can put these decorators simply in the user.entity.ts file, but it won’t be stylish. It is better to make <strong>user.dto.ts</strong> file in <strong>src/user/dtos</strong> directory.</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> IsNotEmpty<span class="token punctuation">,</span> IsString <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"class-validator"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CreateAuthenticationDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/authentication/dtos"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CreateUserDto</span> <span class="token keyword">extends</span> <span class="token class-name">CreateAuthenticationDto</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsString</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsNotEmpty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">readonly</span> firstName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: <strong>CreateAuthenticationDto</strong> is also not defined yet, but we’ll do that in a moment.</p>
+</blockquote>
+<p>From this point on, when creating a new entity, firstName will be required and without it, the code will not execute.</p>
+<h3 id="52-create-a-service" style="position:relative;"><a href="#52-create-a-service" aria-label="52 create a service permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5.2 Create a service</h3>
+<p>Services are responsible for executing the logic. The controller uses service dependencies.<br>
+As I mentioned earlier, we will be using transactions, so let’s already prepare a function that provides all the required parameters.</p>
+<p>Create a file <strong>user.service.ts</strong> in the <strong>src/user/services</strong> directory:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CreateUserDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user/dtos"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/authentication/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> QueryRunner <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserRepository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../repositories"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> _userRepository<span class="token operator">:</span> UserRepository<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">createUser</span><span class="token punctuation">(</span>
+    createUserDto<span class="token operator">:</span> CreateUserDto<span class="token punctuation">,</span>
+    authentication<span class="token operator">:</span> AuthenticationEntity<span class="token punctuation">,</span>
+    queryRunner<span class="token operator">:</span> QueryRunner<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>UserEntity<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_userRepository<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token operator">...</span>createUserDto<span class="token punctuation">,</span>
+      authentication<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> queryRunner<span class="token punctuation">.</span>manager<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Now we can put all the dependencies together. In the main module class, instantiate the services:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TypeOrmModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserRepository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./repositories"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./services"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>TypeOrmModule<span class="token punctuation">.</span><span class="token function">forFeature</span><span class="token punctuation">(</span><span class="token punctuation">[</span>UserRepository<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>UserService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  exports<span class="token operator">:</span> <span class="token punctuation">[</span>UserService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<p>Also, don’t forget to add a module to the base class:</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { UserModule } from 'src/user';
+</span>
+@Module({
+<span class="token unchanged"><span class="token prefix unchanged"> </span> imports: [
+<span class="token prefix unchanged"> </span>   ConfigModule.forRoot({
+<span class="token prefix unchanged"> </span>     ...
+<span class="token prefix unchanged"> </span>   }),
+<span class="token prefix unchanged"> </span>   DatabaseModule,
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>   UserModule,
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> ],
+</span>})
+export class AppModule {}</code></pre></div>
+<p>Now the user module has been programmed in its entirety. ✅</p>
+<h2 id="6-create-authentication-module" style="position:relative;"><a href="#6-create-authentication-module" aria-label="6 create authentication module permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Create authentication module</h2>
+<p>Let’s talk about the authentication module. In this directory, you will store all the logic associated with it.</p>
+<h3 id="61-authentication-model" style="position:relative;"><a href="#61-authentication-model" aria-label="61 authentication model permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.1. Authentication model</h3>
+<p>As I wrote earlier, there will be a data model here that will store sensitive information such as email address or password.</p>
+<p>Create the <strong>authentication.entity.ts</strong> file in the <strong>src/authentication/entities</strong> directory:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Exclude <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"class-transformer"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AbstractEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/common/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Column<span class="token punctuation">,</span> Entity<span class="token punctuation">,</span> OneToOne <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Entity</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">"authentications"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationEntity</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractEntity</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> emailAddress<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Exclude</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">OneToOne</span></span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> UserEntity<span class="token punctuation">,</span> <span class="token punctuation">(</span>user<span class="token operator">:</span> UserEntity<span class="token punctuation">)</span> <span class="token operator">=></span> user<span class="token punctuation">.</span>authentication<span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Exclude</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> user<span class="token operator">:</span> UserEntity<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: You can now bind these 2 entities with a one to one relationship.</p>
+</blockquote>
+<p>For the model, you traditionally create a repository:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Repository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> EntityRepository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm/decorator/EntityRepository"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../entities"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">EntityRepository</span></span><span class="token punctuation">(</span>AuthenticationEntity<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationRepository</span> <span class="token keyword">extends</span> <span class="token class-name">Repository<span class="token operator">&lt;</span>AuthenticationEntity<span class="token operator">></span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<p>And let’s finally create the missing dto class:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> IsEmail<span class="token punctuation">,</span> IsNotEmpty<span class="token punctuation">,</span> IsString<span class="token punctuation">,</span> MinLength <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"class-validator"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CreateAuthenticationDto</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsEmail</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsNotEmpty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">readonly</span> emailAddress<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsString</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsNotEmpty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">MinLength</span></span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+  <span class="token keyword">readonly</span> password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3 id="62-authentication-provider" style="position:relative;"><a href="#62-authentication-provider" aria-label="62 authentication provider permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.2. Authentication provider</h3>
+<p>You need a class that is responsible for performing the hash service.<br>
+A good practice is to create <strong>authentication.provider.ts</strong> in the <strong>src/authentication/providers</strong> directory:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> bcrypt <span class="token keyword">from</span> <span class="token string">"bcrypt"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationProvider</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token keyword">async</span> <span class="token function">generateHash</span><span class="token punctuation">(</span>password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> bcrypt<span class="token punctuation">.</span><span class="token function">hash</span><span class="token punctuation">(</span>password<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3 id="63-subscriber" style="position:relative;"><a href="#63-subscriber" aria-label="63 subscriber permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.3. Subscriber</h3>
+<p>Let’s deal with the subscriber now. You should already know that sensitive data such as a password should not be a simple string of characters. If the data is leaked from the database, all your accounts will be stolen.</p>
+<p>TypeORM has the ability to perform the operation before the insertion, and this is an ideal place to convert a password from a string to a hash.</p>
+<p>Create <strong>authentication.subscriber.ts</strong> in the directory <strong>src/authentication/subscribers</strong>:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  EntitySubscriberInterface<span class="token punctuation">,</span>
+  EventSubscriber<span class="token punctuation">,</span>
+  InsertEvent<span class="token punctuation">,</span>
+  UpdateEvent<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationProvider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../providers"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">EventSubscriber</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationSubscriber</span>
+  <span class="token keyword">implements</span> <span class="token class-name">EntitySubscriberInterface<span class="token operator">&lt;</span>AuthenticationEntity<span class="token operator">></span></span>
+<span class="token punctuation">{</span>
+  <span class="token function">listenTo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> AuthenticationEntity<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">beforeInsert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    entity<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token operator">:</span> InsertEvent<span class="token operator">&lt;</span>AuthenticationEntity<span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entity<span class="token punctuation">.</span>password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      entity<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token keyword">await</span> AuthenticationProvider<span class="token punctuation">.</span><span class="token function">generateHash</span><span class="token punctuation">(</span>
+        entity<span class="token punctuation">.</span>password<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entity<span class="token punctuation">.</span>emailAddress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      entity<span class="token punctuation">.</span>emailAddress <span class="token operator">=</span> entity<span class="token punctuation">.</span>emailAddress<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">beforeUpdate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    entity<span class="token punctuation">,</span>
+    databaseEntity<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token operator">:</span> UpdateEvent<span class="token operator">&lt;</span>AuthenticationEntity<span class="token operator">></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entity<span class="token punctuation">.</span>password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> password <span class="token operator">=</span> <span class="token keyword">await</span> AuthenticationProvider<span class="token punctuation">.</span><span class="token function">generateHash</span><span class="token punctuation">(</span>
+        entity<span class="token punctuation">.</span>password<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>password <span class="token operator">!==</span> databaseEntity<span class="token operator">?.</span>password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        entity<span class="token punctuation">.</span>password <span class="token operator">=</span> password<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: This is a good opportunity to save your email address in lower case format.</p>
+</blockquote>
+<p>Remember to run the subscriber in the <strong>subscribers array</strong> in the <strong>database</strong> module:</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { AuthenticationSubscriber } from 'src/authentication/subscribers';
+</span>
+@Module({
+<span class="token unchanged"><span class="token prefix unchanged"> </span> imports: [
+<span class="token prefix unchanged"> </span>   TypeOrmModule.forRootAsync({
+<span class="token prefix unchanged"> </span>     imports: [ConfigModule],
+<span class="token prefix unchanged"> </span>     inject: [ConfigService],
+<span class="token prefix unchanged"> </span>     useFactory: (configService: ConfigService) => ({
+<span class="token prefix unchanged"> </span>       ...
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>       subscribers: [AuthenticationSubscriber],
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span>     }),
+<span class="token prefix unchanged"> </span>   }),
+<span class="token prefix unchanged"> </span> ],
+</span>})
+export class DatabaseModule {}</code></pre></div>
+<h3 id="64-service" style="position:relative;"><a href="#64-service" aria-label="64 service permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.4. Service</h3>
+<p>Here we will write the logic that the controller will execute.<br>
+As I mentioned, we will be using transactions because we are inserting data in two tables (users and authentications).</p>
+<p>Now look at the code you put in the <strong>authentication.service.ts</strong> file:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable<span class="token punctuation">,</span> InternalServerErrorException <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PostgresErrorCode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/database/constraints"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user/services"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Connection<span class="token punctuation">,</span> QueryRunner <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CreateAuthenticationDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../dtos"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> RegistrationDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../dtos/registration.dto"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserAlreadyExistException <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../exceptions"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationRepository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../repositories"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> _authenticationRepository<span class="token operator">:</span> AuthenticationRepository<span class="token punctuation">,</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> _userService<span class="token operator">:</span> UserService<span class="token punctuation">,</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> _connection<span class="token operator">:</span> Connection<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">registration</span><span class="token punctuation">(</span>registrationDto<span class="token operator">:</span> RegistrationDto<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>UserEntity<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> user<span class="token operator">:</span> UserEntity<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> queryRunner <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_connection<span class="token punctuation">.</span><span class="token function">createQueryRunner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">await</span> queryRunner<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> queryRunner<span class="token punctuation">.</span><span class="token function">startTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> authentication <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_createAuthentication</span><span class="token punctuation">(</span>
+        registrationDto<span class="token punctuation">,</span>
+        queryRunner<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      user <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_userService<span class="token punctuation">.</span><span class="token function">createUser</span><span class="token punctuation">(</span>
+        registrationDto<span class="token punctuation">,</span>
+        authentication<span class="token punctuation">,</span>
+        queryRunner<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">await</span> queryRunner<span class="token punctuation">.</span><span class="token function">commitTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> queryRunner<span class="token punctuation">.</span><span class="token function">rollbackTransaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token operator">?.</span>code <span class="token operator">===</span> PostgresErrorCode<span class="token punctuation">.</span>UniqueViolation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">UserAlreadyExistException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">InternalServerErrorException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> queryRunner<span class="token punctuation">.</span><span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">async</span> <span class="token function">_createAuthentication</span><span class="token punctuation">(</span>
+    createAuthenticationDto<span class="token operator">:</span> CreateAuthenticationDto<span class="token punctuation">,</span>
+    queryRunner<span class="token operator">:</span> QueryRunner<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>AuthenticationEntity<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> authentication <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_authenticationRepository<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>
+      createAuthenticationDto<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> queryRunner<span class="token punctuation">.</span>manager<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>authentication<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Remember that the email address must be unique. It is good to be able to catch this error, so we create <strong>user-already-exist.exception.ts</strong> in the <strong>exceptions</strong> directory:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> BadRequestException <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserAlreadyExistException</span> <span class="token keyword">extends</span> <span class="token class-name">BadRequestException</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>error<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token string">"User with that email already exists"</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Additionally, we use <strong>RegistrationDto</strong> make the code look more stylish. This is basically the same as CreateUserDto, but named differently:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> CreateUserDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user/dtos"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">RegistrationDto</span> <span class="token keyword">extends</span> <span class="token class-name">CreateUserDto</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<p>The service is ready, it can now be exposed to the controller for use. ✅</p>
+<h3 id="65-controller" style="position:relative;"><a href="#65-controller" aria-label="65 controller permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.5. Controller</h3>
+<p>The registration logic is located at <strong>/Authentication/registration</strong>.</p>
+<blockquote>
+<p><strong>Note</strong>: Ideally, it should be hosted at <strong>/Users</strong> with the POST method. But this is hard to do, because then it will make circular dependency. User module will use authentication dependency and vice versa. It can be solved <a href="https://docs.nestjs.com/fundamentals/circular-dependency" target="_blank" rel="nofollow noopener noreferrer">this way</a>, but it is an antipattern. It’s not worth doing.</p>
+</blockquote>
+<p>Create an <strong>authentication.controller.ts</strong> file in the <strong>controlers</strong> directory:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Body<span class="token punctuation">,</span> Controller<span class="token punctuation">,</span> HttpCode<span class="token punctuation">,</span> HttpStatus<span class="token punctuation">,</span> Post <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user/entities"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> RegistrationDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../dtos"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../services"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Controller</span></span><span class="token punctuation">(</span><span class="token string">"Authentication"</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationController</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> _authenticationService<span class="token operator">:</span> AuthenticationService<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Post</span></span><span class="token punctuation">(</span><span class="token string">"registration"</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">HttpCode</span></span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">registration</span><span class="token punctuation">(</span>
+    <span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> registrationDto<span class="token operator">:</span> RegistrationDto<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>UserEntity<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_authenticationService<span class="token punctuation">.</span><span class="token function">registration</span><span class="token punctuation">(</span>registrationDto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3 id="66-inject-all-dependencies-to-module" style="position:relative;"><a href="#66-inject-all-dependencies-to-module" aria-label="66 inject all dependencies to module permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6.6. Inject all dependencies to module</h3>
+<p>Now everything is merged into a single whole using the module.</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> TypeOrmModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/typeorm"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"src/user"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationController <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./controllers"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationRepository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./repositories"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthenticationService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./services"</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>UserModule<span class="token punctuation">,</span> TypeOrmModule<span class="token punctuation">.</span><span class="token function">forFeature</span><span class="token punctuation">(</span><span class="token punctuation">[</span>AuthenticationRepository<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>AuthenticationService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  controllers<span class="token operator">:</span> <span class="token punctuation">[</span>AuthenticationController<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthenticationModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
+<p>You must declare this module in the main application module as well:</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { AuthenticationModule } from 'src/authentication';
+</span>
+@Module({
+<span class="token unchanged"><span class="token prefix unchanged"> </span> imports: [
+<span class="token prefix unchanged"> </span>   ConfigModule.forRoot({
+<span class="token prefix unchanged"> </span>     ...
+<span class="token prefix unchanged"> </span>   }),
+<span class="token prefix unchanged"> </span>   DatabaseModule,
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>   AuthenticationModule,
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span>   UserModule,
+<span class="token prefix unchanged"> </span> ],
+</span>})
+export class AppModule {}</code></pre></div>
+<p>Yes sir, everything is ready. Good job how you made it here. 👍 Let’s see if this masterpiece even works. 😆</p>
+<h2 id="7-tests" style="position:relative;"><a href="#7-tests" aria-label="7 tests permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7. Tests</h2>
+<p>It is now time to test our application. Let’s send a <strong>POST</strong> request to the controller with the address <strong>/Authentication/registration</strong> with the body attached:</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"firstName"</span><span class="token operator">:</span> <span class="token string">"Adrian"</span><span class="token punctuation">,</span>
+  <span class="token property">"emailAddress"</span><span class="token operator">:</span> <span class="token string">"contact@pietrzakadrian.com"</span><span class="token punctuation">,</span>
+  <span class="token property">"password"</span><span class="token operator">:</span> <span class="token string">"123456"</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The controller will perform the following SQL operation:</p>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">START</span> <span class="token keyword">TRANSACTION</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token string">"authentications"</span><span class="token punctuation">(</span><span class="token string">"uuid"</span><span class="token punctuation">,</span> <span class="token string">"created_at"</span><span class="token punctuation">,</span> <span class="token string">"updated_at"</span><span class="token punctuation">,</span> <span class="token string">"email_address"</span><span class="token punctuation">,</span> <span class="token string">"password"</span><span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token keyword">DEFAULT</span><span class="token punctuation">,</span> <span class="token keyword">DEFAULT</span><span class="token punctuation">,</span> <span class="token keyword">DEFAULT</span><span class="token punctuation">,</span> $<span class="token number">1</span><span class="token punctuation">,</span> $<span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">RETURNING</span> <span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"uuid"</span><span class="token punctuation">,</span> <span class="token string">"created_at"</span><span class="token punctuation">,</span> <span class="token string">"updated_at"</span> <span class="token comment">-- PARAMETERS: ["contact@pietrzakadrian.com","$2b$10$x0oV4oPS7ehhCSp537ygruWKxKpSX4MXlluqvxzSibRFCh2kMSS7i"]</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token string">"users"</span><span class="token punctuation">(</span><span class="token string">"uuid"</span><span class="token punctuation">,</span> <span class="token string">"created_at"</span><span class="token punctuation">,</span> <span class="token string">"updated_at"</span><span class="token punctuation">,</span> <span class="token string">"first_name"</span><span class="token punctuation">,</span> <span class="token string">"authentication_id"</span><span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token keyword">DEFAULT</span><span class="token punctuation">,</span> <span class="token keyword">DEFAULT</span><span class="token punctuation">,</span> <span class="token keyword">DEFAULT</span><span class="token punctuation">,</span> $<span class="token number">1</span><span class="token punctuation">,</span> $<span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">RETURNING</span> <span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"uuid"</span><span class="token punctuation">,</span> <span class="token string">"created_at"</span><span class="token punctuation">,</span> <span class="token string">"updated_at"</span> <span class="token comment">-- PARAMETERS: ["Adrian",1]</span>
+<span class="token keyword">COMMIT</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: You can see that the password has been encoded by the subscriber before insert record to database.</p>
+</blockquote>
+<p>And in response, we get the created object, without sensitive data such as id or password:</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"uuid"</span><span class="token operator">:</span> <span class="token string">"0cc8f6cd-44f4-4d73-9bef-9f3b872180c4"</span><span class="token punctuation">,</span>
+  <span class="token property">"firstName"</span><span class="token operator">:</span> <span class="token string">"Adrian"</span><span class="token punctuation">,</span>
+  <span class="token property">"authentication"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"uuid"</span><span class="token operator">:</span> <span class="token string">"b3c257e6-85b4-49b8-b0a0-877e3c936a4e"</span><span class="token punctuation">,</span>
+    <span class="token property">"emailAddress"</span><span class="token operator">:</span> <span class="token string">"contact@pietrzakadrian.com"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Let’s still check that the validation is working. I will now send a request without a firstName:</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"statusCode"</span><span class="token operator">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"firstName should not be empty"</span><span class="token punctuation">,</span> <span class="token string">"firstName must be a string"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"Bad Request"</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>I will still try to add the same email address:</p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"statusCode"</span><span class="token operator">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+  <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"User with that email already exists"</span><span class="token punctuation">,</span>
+  <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"Bad Request"</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Perfect! The effect that was wanted was obtained. 🎉</p>
+<h2 id="8-bonus-openapi-documentation" style="position:relative;"><a href="#8-bonus-openapi-documentation" aria-label="8 bonus openapi documentation permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8. Bonus: OpenAPI documentation</h2>
+<p>Technical documentation is necessary when producing professional software. It is also very useful for a developer. The NestJS framework provides a tool that makes it very easy to generate OpenAPI documentation. We will now add this to the project, this will allow us to keep the source code transparent later.</p>
+<h3 id="81-add-required-dependencies" style="position:relative;"><a href="#81-add-required-dependencies" aria-label="81 add required dependencies permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.1. Add required dependencies</h3>
+<p>Install the required dependencies into your project:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">yarn add @nestjs/swagger swagger-ui-express</code></pre></div>
+<h3 id="82-create-a-setup-swagger-function" style="position:relative;"><a href="#82-create-a-setup-swagger-function" aria-label="82 create a setup swagger function permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.2. Create a Setup Swagger function</h3>
+<p>Create <strong>setup-swagger.util.ts</strong> file in the <strong>utils</strong> directory:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token keyword">type</span> <span class="token punctuation">{</span> INestApplication <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/common"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> DocumentBuilder<span class="token punctuation">,</span> SwaggerModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/swagger"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">setupSwagger</span><span class="token punctuation">(</span>app<span class="token operator">:</span> INestApplication<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"NestJS-Authentication-Full"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setContact</span><span class="token punctuation">(</span>
+      <span class="token string">"Adrian Pietrzak"</span><span class="token punctuation">,</span>
+      <span class="token string">"https://pietrzakadrian.com"</span><span class="token punctuation">,</span>
+      <span class="token string">"contact@pietrzakadrian.com"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> document <span class="token operator">=</span> SwaggerModule<span class="token punctuation">.</span><span class="token function">createDocument</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  SwaggerModule<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token string">"documentation"</span><span class="token punctuation">,</span> app<span class="token punctuation">,</span> document<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Now you can compile the documentation along with the application.</p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { setupSwagger } from './util';
+</span>
+async function bootstrap() {
+<span class="token unchanged"><span class="token prefix unchanged"> </span> ...
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> if (configService.get&lt;string>('NODE_ENV') === NODE_ENV.DEVELOPMENT) {
+<span class="token prefix inserted">+</span>   setupSwagger(app);
+<span class="token prefix inserted">+</span> }
+</span>
+<span class="token unchanged"><span class="token prefix unchanged"> </span> await app.listen(PORT);
+</span>}
+
+void bootstrap();</code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: Remember to make it available only in development mode.</p>
+</blockquote>
+<h3 id="83-decorate-classes" style="position:relative;"><a href="#83-decorate-classes" aria-label="83 decorate classes permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.3. Decorate classes</h3>
+<p>Now you need to add some decorators to your dto and controller classes.
+Keep track now of the changes I make to the files:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ApiProperty <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@nestjs/swagger"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AbstractDto</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiProperty</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> format<span class="token operator">:</span> <span class="token string">"uuid"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">readonly</span> uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { ApiProperty } from '@nestjs/swagger';
+</span>
+export class CreateUserDto extends CreateAuthenticationDto {
+<span class="token unchanged"><span class="token prefix unchanged"> </span> @IsString()
+<span class="token prefix unchanged"> </span> @IsNotEmpty()
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> @ApiProperty()
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> readonly firstName: string;
+</span>}</code></pre></div>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { ApiProperty } from '@nestjs/swagger';
+</span>
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span> export class UserDto {
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> export class UserDto extends AbstractDto {
+<span class="token prefix inserted">+</span> @ApiProperty()
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> readonly firstName: string;
+</span>
+<span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> @ApiProperty({ type: () => AuthenticationDto })
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> readonly authentication: AuthenticationDto;
+</span>}</code></pre></div>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { ApiProperty } from '@nestjs/swagger';
+</span>
+export class CreateAuthenticationDto {
+<span class="token unchanged"><span class="token prefix unchanged"> </span> @IsEmail()
+<span class="token prefix unchanged"> </span> @IsNotEmpty()
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> @ApiProperty()
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> readonly emailAddress: string;
+</span>
+<span class="token unchanged"><span class="token prefix unchanged"> </span> @IsString()
+<span class="token prefix unchanged"> </span> @IsNotEmpty()
+<span class="token prefix unchanged"> </span> @MinLength(6)
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> @ApiProperty()
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> readonly password: string;
+</span>}</code></pre></div>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff">import { ApiProperty } from '@nestjs/swagger';
+import { AbstractDto } from 'src/common/dtos';
+
+<span class="token deleted-sign deleted"><span class="token prefix deleted">-</span> export class AuthenticationDto {
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> export class AuthenticationDto extends AbstractDto {
+<span class="token prefix inserted">+</span> @ApiProperty()
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> readonly emailAddress: string;
+</span>}</code></pre></div>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> import { ApiBadRequestResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+<span class="token prefix inserted">+</span> import { UserDto } from 'src/user/dtos';
+</span>
+@Controller('Authentication')
+<span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> @ApiTags('Authentication')
+</span>export class AuthenticationController {
+<span class="token unchanged"><span class="token prefix unchanged"> </span> constructor(private readonly _authenticationService: AuthenticationService) {}
+</span>
+<span class="token unchanged"><span class="token prefix unchanged"> </span> @Post('registration')
+<span class="token prefix unchanged"> </span> @HttpCode(HttpStatus.OK)
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> @ApiOkResponse({ type: UserDto, description: 'Successfully created user' })
+<span class="token prefix inserted">+</span> @ApiBadRequestResponse({ description: 'User with that email already exists.' })
+<span class="token prefix inserted">+</span> @ApiInternalServerErrorResponse({ description: 'Internal server error' })
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span> async registration(
+<span class="token prefix unchanged"> </span>   @Body() registrationDto: RegistrationDto,
+<span class="token prefix unchanged"> </span> ): Promise&lt;UserEntity> {
+<span class="token prefix unchanged"> </span>   return this._authenticationService.registration(registrationDto);
+<span class="token prefix unchanged"> </span> }
+</span>}</code></pre></div>
+<h3 id="84-preview" style="position:relative;"><a href="#84-preview" aria-label="84 preview permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8.4. Preview</h3>
+<p>When you go to <strong>/documentation</strong>, you will get a properly generated Swagger document:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/971687610a2f091e4cd5ad37a1ec5c95/71dc1/swagger.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 71.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB6UlEQVQ4y6XSW08TQRTA8fk+hEfbouXFxMIDBTReSDRiNPEj+eCDn8EHjZqoEdGGplwiIL1YhF7Yddtt9zq73S31rzvoiw9NGyf55SSTmTNnZo446rcptqpo3Q496dLzXeyBxItD3IkEihNJnIFEVGyNHb1OX3oYnoXhWvRCDzuW2NF4VpJkGOIOQzTLVPuFF4U4gSTmnCEosfJzrEhFVFWm76gbJYeIlmlQ2NvmsFah1jyh2vhOtTmZWuuE/VqZ3aMDDusVGl0d8fLdG3ILOa7lc2Syc6RSKVLp9IRSZOYyXJnPMjMzw5NnTxGNjsZmaYtPO1tsFD9P7YOKBd4XPlJuHiPcKECOkpf7/xFyjjB8i6bV4cTUaTsmum9hBPZUOqFD2+ly5vYQ/chH9/scG200x6Qb2PRin/5Q0htexHH+ru0OXJVY2MMAzTcp1b9Q0Y45czr88PsYcooqpY0ZeZixh5CcUzzY48Gjh9x7fJ8762vcXl/j5t1b5FeWWV5dGWv1xnUWFhd4tfGWgBEiZMTmbpGlpTyL+UWyV7PMzV9Wkha6lLTRn/ivZD6dyTA7O8vz1y8IAWGGLm27y3b5gNLRPjvlQ76eflMtoLQmc2rq6NK6+JTOwMUIHPXAHjEu0ZRizCTP70/5BTtRtjKG+0NTAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/971687610a2f091e4cd5ad37a1ec5c95/8ac56/swagger.webp 240w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/d3be9/swagger.webp 480w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/e46b2/swagger.webp 960w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/f992d/swagger.webp 1440w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/882b9/swagger.webp 1920w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/f4e8b/swagger.webp 2346w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/971687610a2f091e4cd5ad37a1ec5c95/8ff5a/swagger.png 240w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/e85cb/swagger.png 480w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/d9199/swagger.png 960w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/07a9c/swagger.png 1440w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/29114/swagger.png 1920w,
+/static/971687610a2f091e4cd5ad37a1ec5c95/71dc1/swagger.png 2346w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/971687610a2f091e4cd5ad37a1ec5c95/d9199/swagger.png"
+            alt="Swagger"
+            title="Swagger"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>A very quick change and simplifies the process of documenting software application. 📄</p>
+<hr>
+<h1 id="summary" style="position:relative;"><a href="#summary" aria-label="summary permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h1>
+<p>This article presents a complete implementation of new user registration based on advanced programming techniques of TypeScript language and NestJS framework. Environment variables were defined and validated. The subscriber operation in TypeORM was explained and transactions in postgres was applied.</p>
+<hr>
+<p>You can also find this article on <a href="https://medium.com/@pietrzakadrian" target="_blank" rel="nofollow noopener noreferrer">medium.com</a> where I share my solutions to the problems I encountered during my software engineer career.</p></div></div></div><div><div class="Copyright-module--copyright--766ee">© All rights reserved.</div></div><div class="Post-module--footer--f8705"><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/typescript/">TypeScript</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/nodejs/">NodeJS</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/nestjs/">NestJS</a></li></ul></div></div><div class="Post-module--comments--d3b99"><div></div></div><hr/><div><h2>Related articles</h2><section class="Related-module--related--75a7f"><div class="Feed-module--feed--a6204"><div class="Feed-module--item--c7a63"><div class="Feed-module--meta--250c2"><time class="Feed-module--time--72864" dateTime="December 1, 2021">December 1, 2021</time><span class="Feed-module--divider--81a18">—</span><small>11<!-- --> min read</small></div><h2 class="Feed-module--title--f252f"><a class="Feed-module--link--6123b" href="/blog/how-to-create-a-microservice-that-handles-the-queue-of-sending-emails-in-nestjs">How to create a microservice that handles 🎢 the queue of sending emails in NestJS</a></h2><p class="Feed-module--description--57348">In this article, I will present you independent microservice that handles the queue of sending emails using the Node.js platform with the NestJS framework. The use of this microservice allows you to decouple the business logic of the email senders from the main monolithic application, resulting in less use of server resources and therefore faster source code execution.</p><div class="Feed-module--bottom--dd480"><div class="Feed-module--tags--75a26"><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/nodejs/">NodeJS</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/typescript/">TypeScript</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/nestjs/">NestJS</a></li></ul></div></div></div></div><div class="Feed-module--item--c7a63"><div class="Feed-module--meta--250c2"><time class="Feed-module--time--72864" dateTime="November 23, 2021">November 23, 2021</time><span class="Feed-module--divider--81a18">—</span><small>3<!-- --> min read</small></div><h2 class="Feed-module--title--f252f"><a class="Feed-module--link--6123b" href="/blog/how-did-my-open-source-project-get-over-1k-stars-on-github">⭐️ How did my open source project get over 1k stars on GitHub?</a></h2><p class="Feed-module--description--57348">In 2019, I started working on my first larger software application than &quot;todo list&quot;. I was looking for a job as a software developer this year and I needed to distinguish myself from other developers. I made a banking system where you could make transfers (not real money). I&#x27;ve been looking for help from other developers to find out if my JavaScript code is good enough. By coincidence, my application has become one of the most popular open source projects and has received over 1.2k stars up to date.</p><div class="Feed-module--bottom--dd480"><div class="Feed-module--tags--75a26"><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/nodejs/">NodeJS</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/typescript/">TypeScript</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113 Tags-module--button--421f7" href="/blog/tag/react/">React</a></li></ul></div></div></div></div></div></section></div></div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/nestjs-authentication-series/user-registration";window.___webpackCompilationHash="02a7d5c7e282970dd9d7";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-7b231fda57e6c8cb3788.js"],"app":["/app-5c20b449e13236bce12b.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-0c915c7b1bdb5eac4fdf.js"],"component---src-templates-blog-template-blog-template-tsx":["/component---src-templates-blog-template-blog-template-tsx-2e5eac9a48ad4c64e6b4.js"],"component---src-templates-categories-template-categories-template-tsx":["/component---src-templates-categories-template-categories-template-tsx-e95e61bcac46a2493a97.js"],"component---src-templates-category-template-category-template-tsx":["/component---src-templates-category-template-category-template-tsx-878312bf11e7f86cf62a.js"],"component---src-templates-certifications-template-certifications-template-tsx":["/component---src-templates-certifications-template-certifications-template-tsx-576c0e955466ae0e83b2.js"],"component---src-templates-collaboration-template-collaboration-template-tsx":["/component---src-templates-collaboration-template-collaboration-template-tsx-c6d9334da1c16149a156.js"],"component---src-templates-home-template-home-template-tsx":["/component---src-templates-home-template-home-template-tsx-7a400f1de4d0f09c8628.js"],"component---src-templates-not-found-template-not-found-template-tsx":["/component---src-templates-not-found-template-not-found-template-tsx-ea68c7ff6de6afaebced.js"],"component---src-templates-page-template-page-template-tsx":["/component---src-templates-page-template-page-template-tsx-f4339b4ae2b8c66ab1fa.js"],"component---src-templates-post-template-post-template-tsx":["/component---src-templates-post-template-post-template-tsx-8fa5be1b5d15e1258ff7.js"],"component---src-templates-tag-template-tag-template-tsx":["/component---src-templates-tag-template-tag-template-tsx-fc683d449c01b8d4a04e.js"],"component---src-templates-tags-template-tags-template-tsx":["/component---src-templates-tags-template-tags-template-tsx-68309a9b42b11997ffc7.js"]};/*]]>*/</script><script src="/polyfill-7b231fda57e6c8cb3788.js" nomodule=""></script><script src="/app-5c20b449e13236bce12b.js" async=""></script><script src="/framework-745d5d28c0250a1a333b.js" async=""></script><script src="/webpack-runtime-5016701f166aaff95366.js" async=""></script></body></html>
