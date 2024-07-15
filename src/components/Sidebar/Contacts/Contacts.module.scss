@@ -1,0 +1,46 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.contacts {
+  @include margin-bottom(1);
+
+  .list {
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    list-style: none;
+    max-width: 150px;
+    @include padding-equal(0);
+    @include margin-equal(0);
+
+    .item {
+      align-content: center;
+      align-items: center;
+      display: flex;
+      height: $button-height;
+      justify-content: center;
+      line-height: $button-height;
+      text-align: center;
+      @include padding-equal(0);
+      @include margin-equal(0.35);
+
+      &:nth-child(3n + 1) {
+        @include margin-left(0);
+      }
+
+      .link {
+        border: 0;
+        color: var(--color-typographic-base-font);
+        cursor: pointer;
+        display: flex;
+        transition: color .2s ease;
+
+        &:hover,
+        &:focus {
+          color: var(--color-typographic-link-p-font);
+        }
+      }
+    }
+  }
+}

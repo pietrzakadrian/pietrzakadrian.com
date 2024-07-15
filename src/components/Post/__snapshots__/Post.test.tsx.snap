@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post renders correctly 1`] = `
+<div>
+  <div>
+    <div>
+      <h1>
+        Perfecting the Art of Perfection
+      </h1>
+      <div>
+        <div>
+          <div>
+            <strong>
+              John Doe
+            </strong>
+            <div>
+              <p>
+                Sep 1, 2016
+              </p>
+              <span>
+                —
+              </span>
+              <p>
+                5
+                 min read
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        dangerouslySetInnerHTML={
+          {
+            "__html": "<p>An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.</p>",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div>
+    <div>
+      All rights reserved.
+    </div>
+  </div>
+  <div />
+  <div>
+    <div />
+  </div>
+  <hr />
+  <div>
+    <h2>
+      Related articles
+    </h2>
+    <section>
+      <div>
+        <div>
+          <div>
+            <time
+              dateTime="September 1, 2016"
+            >
+              September 1, 2016
+            </time>
+            <span>
+              —
+            </span>
+            <small>
+               min read
+            </small>
+          </div>
+          <h2>
+            <a
+              href="/posts/perfecting-the-art-of-perfection"
+            >
+              Perfecting the Art of Perfection
+            </a>
+          </h2>
+          <p>
+            An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.
+          </p>
+          <div />
+        </div>
+        <div>
+          <div>
+            <time
+              dateTime="September 1, 2016"
+            >
+              September 1, 2016
+            </time>
+            <span>
+              —
+            </span>
+            <small>
+               min read
+            </small>
+          </div>
+          <h2>
+            <a
+              href="/posts/johannes-gutenberg"
+            >
+              Johannes Gutenberg: The Birth of Movable Type
+            </a>
+          </h2>
+          <p>
+            German inventor Johannes Gutenberg developed a method of movable type and used it to create one of the western world’s first major printed books, the “Forty–Two–Line” Bible.
+          </p>
+          <div />
+        </div>
+        <div>
+          <div>
+            <time
+              dateTime="September 1, 2017"
+            >
+              September 1, 2017
+            </time>
+            <span>
+              —
+            </span>
+            <small>
+               min read
+            </small>
+          </div>
+          <h2>
+            <a
+              href="/posts/humane-typography-in-the-digital-age"
+            >
+              Humane Typography in the Digital Age
+            </a>
+          </h2>
+          <p />
+          <div />
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+`;

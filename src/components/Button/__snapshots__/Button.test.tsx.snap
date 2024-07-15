@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<a
+  href="/"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <button
+    className=""
+  >
+    Button
+  </button>
+</a>
+`;
+
+exports[`Button renders correctly with custom class name 1`] = `
+<a
+  href="/"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <button
+    className="custom-class-name"
+  >
+    Button
+  </button>
+</a>
+`;
+
+exports[`Button renders correctly with external link 1`] = `
+<a
+  href="https://example.com"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <button
+    className=""
+  >
+    Button
+  </button>
+</a>
+`;
