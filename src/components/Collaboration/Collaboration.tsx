@@ -1,9 +1,5 @@
 import React from "react";
 
-import { Button } from "@/components/Button";
-
-import downloadFile from "./report.pdf";
-
 import * as styles from "./Collaboration.module.scss";
 
 const Collaboration: React.FC = () => (
@@ -14,16 +10,7 @@ const Collaboration: React.FC = () => (
       articles become a help to the whole community and help solve problems
       encountered in the software development process and beyond.
     </p>
-
-    <Button
-      className={styles.button}
-      isLink={false}
-      title={"Get the GA4 report for the last 3 months"}
-      to={downloadFile}
-    />
-
     <hr />
-
     <p>
       I'm aiming to continuously expand my expertise in Software Engineering and
       Web Development through active participation in demanding, real-world

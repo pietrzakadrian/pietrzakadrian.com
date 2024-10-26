@@ -13,7 +13,6 @@ const CollaborationTemplate: React.FC = () => (
     <Sidebar />
     <Page title="Collaboration">
       <Collaboration />
-      <Partners />
     </Page>
   </Layout>
 );
