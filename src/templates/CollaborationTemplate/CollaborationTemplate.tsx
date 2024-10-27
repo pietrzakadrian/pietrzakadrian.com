@@ -4,7 +4,6 @@ import { Collaboration } from "@/components/Collaboration";
 import { Layout } from "@/components/Layout";
 import { Meta } from "@/components/Meta";
 import { Page } from "@/components/Page";
-import { Partners } from "@/components/Partners";
 import { Sidebar } from "@/components/Sidebar";
 import { useSiteMetadata } from "@/hooks";
 

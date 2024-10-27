@@ -1,7 +1,7 @@
 {
   "title": "Adrian Pietrzak",
   "url": "https://pietrzakadrian.com",
-  "subtitle": "Adrian Pietrzak is a software engineer from Poland. He mostly works with Node.js, React and React Native.",
+  "subtitle": "Adrian Pietrzak is a software engineer from Poland. Over 6 years of professional experience in creating apps.",
   "copyright": "© All rights reserved.",
   "googleAnalyticsId": "UA-205649365-1",
   "disqusShortname": "",
@@ -36,7 +36,7 @@
   "author": {
     "name": "Adrian Pietrzak",
     "photo": "/photo.jpg",
-    "bio": "Software Engineer from Poland. Over 6 years of professional experience in develop apps.",
+    "bio": "Software Engineer from Poland. Over 6 years of professional experience in creating apps.",
     "contacts": {
       "rss": "",
       "email": "contact@pietrzakadrian.com",
