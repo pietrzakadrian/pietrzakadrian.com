@@ -1,7 +1,7 @@
 {
   "title": "Adrian Pietrzak",
   "url": "https://pietrzakadrian.com",
-  "subtitle": "Adrian Pietrzak is a software engineer from Poland. Over 6 years of professional experience in creating apps.",
+  "subtitle": "Adrian Pietrzak is a software engineer from Poland. Over 7 years of professional experience in creating apps.",
   "copyright": "© All rights reserved.",
   "googleAnalyticsId": "UA-205649365-1",
   "disqusShortname": "",
@@ -36,10 +36,10 @@
   "author": {
     "name": "Adrian Pietrzak",
     "photo": "/photo.jpg",
-    "bio": "Software Engineer from Poland. Over 6 years of professional experience in creating apps.",
+    "bio": "Software Engineer from Poland. Mostly TypeScript — both frontend & backend side.",
     "contacts": {
       "rss": "",
-      "email": "contact@pietrzakadrian.com",
+      "email": "",
       "github": "pietrzakadrian",
       "facebook": "",
       "telegram": "",

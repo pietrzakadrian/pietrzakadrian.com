@@ -24,6 +24,10 @@
     font-size: $typographic-base-font-size;
     @include line-height(1);
     @include margin(0, 0, 1);
+
+    p {
+      text-align: justify;
+    }
   }
 }
 
