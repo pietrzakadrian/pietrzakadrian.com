@@ -158,18 +158,6 @@ export default {
       },
     },
     {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        name: config.title,
-        short_name: config.title,
-        theme_color: "hsl(31, 92%, 62%)",
-        background_color: "hsl(0, 0%, 100%)",
-        icon: "content/photo.jpg",
-        display: "standalone",
-        start_url: "/",
-      },
-    },
-    {
       resolve: "gatsby-plugin-offline",
       options: {
         workboxConfig: {
